@@ -29,3 +29,6 @@ dependencies:
 - jupyter-book
 - jupyterlab
 - jupyter_server<2
+- pip
+- pip:
+    - sphinx-pythia-theme
