@@ -25,12 +25,7 @@ dependencies:
 - tqdm
 - watermark
 - xarray>=2023.4.2
-#
-# These have been used in the past but are currently unneeded:
-#- holoviews
-#- hvplot
-#- bokeh
-#- nodejs
-#- numba
-#- h5py
-#- netcdf4
+# For Pythia-related builds
+- jupyter-book
+- jupyterlab
+- jupyter_server<2
