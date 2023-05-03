@@ -1,10 +1,36 @@
-name: cookbook-dev
+name: na-cordex-viz-cookbook-dev
 channels:
-  - conda-forge
+- conda-forge
 dependencies:
-  - jupyter-book
-  - jupyterlab
-  - jupyter_server<2
-  - pip
-  - pip:
-      - sphinx-pythia-theme
+- bottleneck
+- cartopy>=0.21.1
+- cf-units
+- cftime>=1.0.4.2
+- cmaps
+- dask>=2023.4.0
+- dask-jobqueue>=0.8.1
+- distributed
+- intake>=0.6.8
+- intake-esm>=2020.8.15
+- ipykernel
+- matplotlib
+- nc-time-axis
+- nbval                   # for rendering notebooks in HTML
+- pandas>=2.0.1
+- pip
+- pytest
+- python>=3.8
+- s3fs
+- scipy>=1.10.1
+- tqdm
+- watermark
+- xarray>=2023.4.2
+#
+# These have been used in the past but are currently unneeded:
+#- holoviews
+#- hvplot
+#- bokeh
+#- nodejs
+#- numba
+#- h5py
+#- netcdf4
