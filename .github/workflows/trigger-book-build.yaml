@@ -4,6 +4,7 @@ on:
 
 jobs:
   build:
+    if: ${{ github.repository_owner == 'ProjectPythia' }}
     uses: ProjectPythia/cookbook-actions/.github/workflows/build-book.yaml@main
     with:
       environment_name: na-cordex-viz-cookbook-dev
