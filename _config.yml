@@ -17,10 +17,8 @@ tags:
 
 execute:
   # To execute notebooks via a binder instead, replace 'cache' with 'binder'
-  #execute_notebooks: force
-  execute_notebooks: binder
-  #execute_notebooks: cache
-  timeout: 6000
+  execute_notebooks: cache
+  timeout: 600
   allow_errors: False # cells with expected failures must set the `raises-exception` cell tag
 
 # Add a few extensions to help with parsing content
@@ -38,7 +36,7 @@ parse:
 
 sphinx:
   config:
-
+    linkcheck_ignore: ["https://doi.org/*",]
     html_favicon: notebooks/images/icons/favicon.ico
     html_last_updated_fmt: '%-d %B %Y'
     html_theme: sphinx_pythia_theme
@@ -46,7 +44,7 @@ sphinx:
     html_theme_options:
       home_page_in_toc: true
       repository_url: https://github.com/ProjectPythia/cookbook-template/ # Online location of your book
-      repository_branch: test-branch # Which branch of the repository should be used when creating links (optional)
+      repository_branch: main # Which branch of the repository should be used when creating links (optional)
       use_issues_button: true
       use_repository_button: true
       use_edit_page_button: true
