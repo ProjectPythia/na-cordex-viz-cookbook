@@ -257,7 +257,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
             href="https://github.com/ProjectPythia/cookbook-template//issues/new?title=Issue%20on%20page%20%2Fnotebooks/plot-diagnostics.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/ProjectPythia/cookbook-template/edit/test-branch/notebooks/plot-diagnostics.ipynb"><button
+        <a class="edit-button" href="https://github.com/ProjectPythia/cookbook-template/edit/main/notebooks/plot-diagnostics.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -277,7 +277,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="http://binder.mypythia.org/v2/gh/ProjectPythia/cookbook-template/test-branch?urlpath=lab/tree/notebooks/plot-diagnostics.ipynb"><button type="button"
+        <a class="binder-button" href="http://binder.mypythia.org/v2/gh/ProjectPythia/cookbook-template/main?urlpath=lab/tree/notebooks/plot-diagnostics.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -442,11 +442,11 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dask_jobqueue: 0.8.1
-intake       : 0.6.8
-numpy        : 1.24.3
-xarray       : 2023.4.2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>intake       : 0.6.8
 matplotlib   : 3.7.1
+numpy        : 1.24.3
+dask_jobqueue: 0.8.1
+xarray       : 2023.5.0
 </pre></div>
 </div>
 </div>
@@ -476,6 +476,30 @@ to replace the usage of <code class="docutils literal notranslate"><span class="
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
 future: &lt;Task finished name=&#39;Task-17&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
+Traceback (most recent call last):
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
+    return await aw
+           ^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 74, in _
+    await self.start()
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 411, in start
+    out = await self._submit_job(fn)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 394, in _submit_job
+    return self._call(shlex.split(self.submit_command) + [script_filename])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 481, in _call
+    proc = subprocess.Popen(
+           ^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1024, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1917, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
+future: &lt;Task finished name=&#39;Task-18&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
 Traceback (most recent call last):
   File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
     return await aw
@@ -546,31 +570,7 @@ Traceback (most recent call last):
 FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
-future: &lt;Task finished name=&#39;Task-18&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
-Traceback (most recent call last):
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
-    return await aw
-           ^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 74, in _
-    await self.start()
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 411, in start
-    out = await self._submit_job(fn)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 394, in _submit_job
-    return self._call(shlex.split(self.submit_command) + [script_filename])
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 481, in _call
-    proc = subprocess.Popen(
-           ^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1024, in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1917, in _execute_child
-    raise child_exception_type(errno_num, err_msg, err_filename)
-FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-05-05 19:44:53,215 - tornado.application - ERROR - Exception in callback functools.partial(&lt;bound method IOLoop._discard_future_result of &lt;tornado.platform.asyncio.AsyncIOLoop object at 0x7f32c4ffb4d0&gt;&gt;, &lt;Task finished name=&#39;Task-14&#39; coro=&lt;SpecCluster._correct_state_internal() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:346&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-05-23 22:05:17,868 - tornado.application - ERROR - Exception in callback functools.partial(&lt;bound method IOLoop._discard_future_result of &lt;tornado.platform.asyncio.AsyncIOLoop object at 0x7fa91fe81890&gt;&gt;, &lt;Task finished name=&#39;Task-14&#39; coro=&lt;SpecCluster._correct_state_internal() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:346&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;)
 Traceback (most recent call last):
   File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/tornado/ioloop.py&quot;, line 738, in _run_callback
     ret = callback()
@@ -599,7 +599,7 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
-future: &lt;Task finished name=&#39;Task-24&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
+future: &lt;Task finished name=&#39;Task-22&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
 Traceback (most recent call last):
   File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
     return await aw
@@ -623,7 +623,7 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
-future: &lt;Task finished name=&#39;Task-21&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
+future: &lt;Task finished name=&#39;Task-24&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
 Traceback (most recent call last):
   File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
     return await aw
@@ -671,7 +671,7 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
-future: &lt;Task finished name=&#39;Task-22&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
+future: &lt;Task finished name=&#39;Task-21&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
 Traceback (most recent call last):
   File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
     return await aw
@@ -699,11 +699,11 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
     </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px; margin-top: 0px;">PBSCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">ac78a299</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">0bbe4b0d</p>
         <table style="width: 100%; text-align: left;">
             <tr>
                 <td style="text-align: left;">
-                    <strong>Dashboard:</strong> <a href="http://10.1.0.60:8787/status" target="_blank">http://10.1.0.60:8787/status</a>
+                    <strong>Dashboard:</strong> <a href="http://10.1.0.21:8787/status" target="_blank">http://10.1.0.21:8787/status</a>
                 </td>
                 <td style="text-align: left;">
                     <strong>Workers:</strong> 0
@@ -730,11 +730,11 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
         <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
         <div style="margin-left: 48px;">
             <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-b5ef4da5-5167-4b33-b2e3-754fecd8e8b5</p>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-c93f7b75-4a4e-4271-8564-044e3c7a6ae1</p>
             <table style="width: 100%; text-align: left;">
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://10.1.0.60:35565
+                        <strong>Comm:</strong> tcp://10.1.0.21:43977
                     </td>
                     <td style="text-align: left;">
                         <strong>Workers:</strong> 0
@@ -742,7 +742,7 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
                 </tr>
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Dashboard:</strong> <a href="http://10.1.0.60:8787/status" target="_blank">http://10.1.0.60:8787/status</a>
+                        <strong>Dashboard:</strong> <a href="http://10.1.0.21:8787/status" target="_blank">http://10.1.0.21:8787/status</a>
                     </td>
                     <td style="text-align: left;">
                         <strong>Total threads:</strong> 0
@@ -820,15 +820,15 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">File /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/registry.py:216,</span> in <span class="ni">get_filesystem_class</span><span class="nt">(protocol)</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">216</span>     <span class="n">register_implementation</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="n">_import_class</span><span class="p">(</span><span class="n">bit</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]))</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span> <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="nn">File /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/registry.py:220,</span> in <span class="ni">get_filesystem_class</span><span class="nt">(protocol)</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">220</span>     <span class="n">register_implementation</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="n">_import_class</span><span class="p">(</span><span class="n">bit</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]))</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span> <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-<span class="nn">File /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/registry.py:239,</span> in <span class="ni">_import_class</span><span class="nt">(cls, minv)</span>
-<span class="g g-Whitespace">    </span><span class="mi">238</span> <span class="n">mod</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">239</span> <span class="n">mod</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">240</span> <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="nn">File /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/registry.py:243,</span> in <span class="ni">_import_class</span><span class="nt">(cls, minv)</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span> <span class="n">mod</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">243</span> <span class="n">mod</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">244</span> <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
 <span class="nn">File /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/importlib/__init__.py:126,</span> in <span class="ni">import_module</span><span class="nt">(name, package)</span>
 <span class="g g-Whitespace">    </span><span class="mi">125</span>         <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -908,12 +908,12 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
 <span class="g g-Whitespace">    </span><span class="mi">326</span>     <span class="n">extra_kwargs</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_kwargs_from_urls</span><span class="p">(</span><span class="n">bit</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">327</span>     <span class="n">kws</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="p">{})</span>
 
-<span class="nn">File /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/registry.py:218,</span> in <span class="ni">get_filesystem_class</span><span class="nt">(protocol)</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span>         <span class="n">register_implementation</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="n">_import_class</span><span class="p">(</span><span class="n">bit</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]))</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span>     <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">218</span>         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">bit</span><span class="p">[</span><span class="s2">&quot;err&quot;</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">e</span>
-<span class="g g-Whitespace">    </span><span class="mi">219</span> <span class="bp">cls</span> <span class="o">=</span> <span class="n">registry</span><span class="p">[</span><span class="n">protocol</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;protocol&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+<span class="nn">File /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/registry.py:222,</span> in <span class="ni">get_filesystem_class</span><span class="nt">(protocol)</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>         <span class="n">register_implementation</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="n">_import_class</span><span class="p">(</span><span class="n">bit</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]))</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>     <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">222</span>         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">bit</span><span class="p">[</span><span class="s2">&quot;err&quot;</span><span class="p">])</span> <span class="kn">from</span> <span class="nn">e</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span> <span class="bp">cls</span> <span class="o">=</span> <span class="n">registry</span><span class="p">[</span><span class="n">protocol</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;protocol&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;abstract&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
 
 <span class="ne">ImportError</span>: HTTPFileSystem requires &quot;requests&quot; and &quot;aiohttp&quot; to be installed
 </pre></div>
@@ -1374,7 +1374,7 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 5 May 2023.
+          Last updated on 23 May 2023.
         </p>
       </div>
     </div>
