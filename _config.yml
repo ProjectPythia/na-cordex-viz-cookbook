@@ -1,17 +1,17 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Project Pythia Cookbook Template
-author: the <a href="https://projectpythia.org/">Project Pythia</a> Community
+title: NA-CORDEX Visualization Notebook
+author: Brian Bonnlander, Seth McGinnis, Anderson Banihirwe, Eric Nienhouse, Jeff de La Beaujardière
 logo: notebooks/images/logos/pythia_logo-white-rtext.svg
 email: projectpythia@ucar.edu
-copyright: "2022"
+copyright: "2023"
 
-description: A sample cookbook description.
+description: A notebook for visualizing data from the NA-CORDEX dataset.
 thumbnail: thumbnail.png
 tags:
   domains:
-    - sampledomain
+    - https://na-cordex.org/
   packages:
     - samplepackage
 
