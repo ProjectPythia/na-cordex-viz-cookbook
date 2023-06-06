@@ -442,7 +442,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>intake       : 0.6.8
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>intake       : 0.7.0
 matplotlib   : 3.7.1
 numpy        : 1.24.3
 dask_jobqueue: 0.8.1
@@ -476,30 +476,6 @@ to replace the usage of <code class="docutils literal notranslate"><span class="
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
 future: &lt;Task finished name=&#39;Task-17&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
-Traceback (most recent call last):
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
-    return await aw
-           ^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 74, in _
-    await self.start()
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 411, in start
-    out = await self._submit_job(fn)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 394, in _submit_job
-    return self._call(shlex.split(self.submit_command) + [script_filename])
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 481, in _call
-    proc = subprocess.Popen(
-           ^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1024, in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1917, in _execute_child
-    raise child_exception_type(errno_num, err_msg, err_filename)
-FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
-future: &lt;Task finished name=&#39;Task-18&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
 Traceback (most recent call last):
   File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
     return await aw
@@ -570,7 +546,31 @@ Traceback (most recent call last):
 FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-05-23 22:05:17,868 - tornado.application - ERROR - Exception in callback functools.partial(&lt;bound method IOLoop._discard_future_result of &lt;tornado.platform.asyncio.AsyncIOLoop object at 0x7fa91fe81890&gt;&gt;, &lt;Task finished name=&#39;Task-14&#39; coro=&lt;SpecCluster._correct_state_internal() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:346&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
+future: &lt;Task finished name=&#39;Task-18&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
+Traceback (most recent call last):
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
+    return await aw
+           ^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 74, in _
+    await self.start()
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 411, in start
+    out = await self._submit_job(fn)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 394, in _submit_job
+    return self._call(shlex.split(self.submit_command) + [script_filename])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 481, in _call
+    proc = subprocess.Popen(
+           ^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1024, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1917, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-06 19:41:06,645 - tornado.application - ERROR - Exception in callback functools.partial(&lt;bound method IOLoop._discard_future_result of &lt;tornado.platform.asyncio.AsyncIOLoop object at 0x7f76f452ddd0&gt;&gt;, &lt;Task finished name=&#39;Task-14&#39; coro=&lt;SpecCluster._correct_state_internal() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:346&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;)
 Traceback (most recent call last):
   File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/tornado/ioloop.py&quot;, line 738, in _run_callback
     ret = callback()
@@ -599,55 +599,7 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
-future: &lt;Task finished name=&#39;Task-22&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
-Traceback (most recent call last):
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
-    return await aw
-           ^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 74, in _
-    await self.start()
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 411, in start
-    out = await self._submit_job(fn)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 394, in _submit_job
-    return self._call(shlex.split(self.submit_command) + [script_filename])
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 481, in _call
-    proc = subprocess.Popen(
-           ^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1024, in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1917, in _execute_child
-    raise child_exception_type(errno_num, err_msg, err_filename)
-FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
 future: &lt;Task finished name=&#39;Task-24&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
-Traceback (most recent call last):
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
-    return await aw
-           ^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 74, in _
-    await self.start()
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 411, in start
-    out = await self._submit_job(fn)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 394, in _submit_job
-    return self._call(shlex.split(self.submit_command) + [script_filename])
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 481, in _call
-    proc = subprocess.Popen(
-           ^^^^^^^^^^^^^^^^^
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1024, in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1917, in _execute_child
-    raise child_exception_type(errno_num, err_msg, err_filename)
-FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
-future: &lt;Task finished name=&#39;Task-23&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
 Traceback (most recent call last):
   File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
     return await aw
@@ -694,16 +646,64 @@ Traceback (most recent call last):
 FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
+future: &lt;Task finished name=&#39;Task-22&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
+Traceback (most recent call last):
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
+    return await aw
+           ^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 74, in _
+    await self.start()
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 411, in start
+    out = await self._submit_job(fn)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 394, in _submit_job
+    return self._call(shlex.split(self.submit_command) + [script_filename])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 481, in _call
+    proc = subprocess.Popen(
+           ^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1024, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1917, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task exception was never retrieved
+future: &lt;Task finished name=&#39;Task-23&#39; coro=&lt;_wrap_awaitable() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:124&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;
+Traceback (most recent call last):
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 125, in _wrap_awaitable
+    return await aw
+           ^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py&quot;, line 74, in _
+    await self.start()
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 411, in start
+    out = await self._submit_job(fn)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 394, in _submit_job
+    return self._call(shlex.split(self.submit_command) + [script_filename])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/dask_jobqueue/core.py&quot;, line 481, in _call
+    proc = subprocess.Popen(
+           ^^^^^^^^^^^^^^^^^
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1024, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/subprocess.py&quot;, line 1917, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
+</pre></div>
+</div>
 <div class="output text_html"><div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-mod-trusted jp-OutputArea-output">
     <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;">
     </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px; margin-top: 0px;">PBSCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">0bbe4b0d</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">89c446c6</p>
         <table style="width: 100%; text-align: left;">
             <tr>
                 <td style="text-align: left;">
-                    <strong>Dashboard:</strong> <a href="http://10.1.0.21:8787/status" target="_blank">http://10.1.0.21:8787/status</a>
+                    <strong>Dashboard:</strong> <a href="http://10.1.1.109:8787/status" target="_blank">http://10.1.1.109:8787/status</a>
                 </td>
                 <td style="text-align: left;">
                     <strong>Workers:</strong> 0
@@ -730,11 +730,11 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
         <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
         <div style="margin-left: 48px;">
             <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-c93f7b75-4a4e-4271-8564-044e3c7a6ae1</p>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-5f1e0d6d-6ca6-44ec-9c26-9dfa8ea3be51</p>
             <table style="width: 100%; text-align: left;">
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://10.1.0.21:43977
+                        <strong>Comm:</strong> tcp://10.1.1.109:43273
                     </td>
                     <td style="text-align: left;">
                         <strong>Workers:</strong> 0
@@ -742,7 +742,7 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
                 </tr>
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Dashboard:</strong> <a href="http://10.1.0.21:8787/status" target="_blank">http://10.1.0.21:8787/status</a>
+                        <strong>Dashboard:</strong> <a href="http://10.1.1.109:8787/status" target="_blank">http://10.1.1.109:8787/status</a>
                     </td>
                     <td style="text-align: left;">
                         <strong>Total threads:</strong> 0
@@ -1374,7 +1374,7 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 23 May 2023.
+          Last updated on 6 June 2023.
         </p>
       </div>
     </div>
