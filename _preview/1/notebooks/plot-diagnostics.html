@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Make Diagnostic Plots for NA-CORDEX Zarr Stores &#8212; Project Pythia Cookbook Template</title>
+    <title>Make Diagnostic Plots for NA-CORDEX Zarr Stores &#8212; NA-CORDEX Visualization Notebook</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -443,10 +443,10 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>intake       : 0.7.0
-matplotlib   : 3.7.1
-numpy        : 1.24.3
 dask_jobqueue: 0.8.1
 xarray       : 2023.5.0
+numpy        : 1.24.3
+matplotlib   : 3.7.1
 </pre></div>
 </div>
 </div>
@@ -570,7 +570,7 @@ Traceback (most recent call last):
 FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-06 19:41:06,645 - tornado.application - ERROR - Exception in callback functools.partial(&lt;bound method IOLoop._discard_future_result of &lt;tornado.platform.asyncio.AsyncIOLoop object at 0x7f76f452ddd0&gt;&gt;, &lt;Task finished name=&#39;Task-14&#39; coro=&lt;SpecCluster._correct_state_internal() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:346&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2023-06-06 20:06:54,018 - tornado.application - ERROR - Exception in callback functools.partial(&lt;bound method IOLoop._discard_future_result of &lt;tornado.platform.asyncio.AsyncIOLoop object at 0x7f8231381b90&gt;&gt;, &lt;Task finished name=&#39;Task-14&#39; coro=&lt;SpecCluster._correct_state_internal() done, defined at /usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/distributed/deploy/spec.py:346&gt; exception=FileNotFoundError(2, &#39;No such file or directory&#39;)&gt;)
 Traceback (most recent call last):
   File &quot;/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/tornado/ioloop.py&quot;, line 738, in _run_callback
     ret = callback()
@@ -699,11 +699,11 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
     </div>
     <div style="margin-left: 48px;">
         <h3 style="margin-bottom: 0px; margin-top: 0px;">PBSCluster</h3>
-        <p style="color: #9D9D9D; margin-bottom: 0px;">89c446c6</p>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">2e2a2cd8</p>
         <table style="width: 100%; text-align: left;">
             <tr>
                 <td style="text-align: left;">
-                    <strong>Dashboard:</strong> <a href="http://10.1.1.109:8787/status" target="_blank">http://10.1.1.109:8787/status</a>
+                    <strong>Dashboard:</strong> <a href="http://10.1.46.0:8787/status" target="_blank">http://10.1.46.0:8787/status</a>
                 </td>
                 <td style="text-align: left;">
                     <strong>Workers:</strong> 0
@@ -730,11 +730,11 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
         <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
         <div style="margin-left: 48px;">
             <h3 style="margin-bottom: 0px;">Scheduler</h3>
-            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-5f1e0d6d-6ca6-44ec-9c26-9dfa8ea3be51</p>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-e660e9e2-f98e-4648-ab46-9cf7a474b859</p>
             <table style="width: 100%; text-align: left;">
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Comm:</strong> tcp://10.1.1.109:43273
+                        <strong>Comm:</strong> tcp://10.1.46.0:44563
                     </td>
                     <td style="text-align: left;">
                         <strong>Workers:</strong> 0
@@ -742,7 +742,7 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
                 </tr>
                 <tr>
                     <td style="text-align: left;">
-                        <strong>Dashboard:</strong> <a href="http://10.1.1.109:8787/status" target="_blank">http://10.1.1.109:8787/status</a>
+                        <strong>Dashboard:</strong> <a href="http://10.1.46.0:8787/status" target="_blank">http://10.1.46.0:8787/status</a>
                     </td>
                     <td style="text-align: left;">
                         <strong>Total threads:</strong> 0
@@ -1370,9 +1370,9 @@ FileNotFoundError: [Errno 2] No such file or directory: &#39;qsub&#39;
     <div class="container-xl">
       <div class="d-flex justify-content-center">
         <p class="py-1 m-0">
-            &copy;&nbsp;2022.
+            &copy;&nbsp;2023.
         
-          By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
+          By Brian Bonnlander, Seth McGinnis, Anderson Banihirwe, Eric Nienhouse, Jeff de La Beaujardière.
         
           Last updated on 6 June 2023.
         </p>
