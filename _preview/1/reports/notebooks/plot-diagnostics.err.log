@@ -18,108 +18,36 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Have the catalog interpret the "na-cordex-models" column as a list of values, as opposed to single values.
-col = intake.open_esm_datastore(catalog_url, read_csv_kwargs={"converters": {"na-cordex-models": ast.literal_eval}},)
-col
+if USE_PBS_SCHEDULER:
+    cluster = get_pbs_cluster()
+else:
+    cluster = get_gateway_cluster()
+    
+# Connect to cluster
+from distributed import Client
+client = Client(cluster)
+
+# Display cluster dashboard URL
+cluster
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-File [0;32m/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/registry.py:220[0m, in [0;36mget_filesystem_class[0;34m(protocol)[0m
-[1;32m    219[0m [38;5;28;01mtry[39;00m:
-[0;32m--> 220[0m     register_implementation(protocol, [43m_import_class[49m[43m([49m[43mbit[49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mclass[39;49m[38;5;124;43m"[39;49m[43m][49m[43m)[49m)
-[1;32m    221[0m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m [38;5;28;01mas[39;00m e:
+Cell [0;32mIn[7], line 4[0m
+[1;32m      2[0m     cluster [38;5;241m=[39m get_pbs_cluster()
+[1;32m      3[0m [38;5;28;01melse[39;00m:
+[0;32m----> 4[0m     cluster [38;5;241m=[39m [43mget_gateway_cluster[49m[43m([49m[43m)[49m
+[1;32m      6[0m [38;5;66;03m# Connect to cluster[39;00m
+[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01mdistributed[39;00m [38;5;28;01mimport[39;00m Client
 
-File [0;32m/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/registry.py:243[0m, in [0;36m_import_class[0;34m(cls, minv)[0m
-[1;32m    242[0m mod, name [38;5;241m=[39m [38;5;28mcls[39m[38;5;241m.[39mrsplit([38;5;124m"[39m[38;5;124m.[39m[38;5;124m"[39m, [38;5;241m1[39m)
-[0;32m--> 243[0m mod [38;5;241m=[39m [43mimportlib[49m[38;5;241;43m.[39;49m[43mimport_module[49m[43m([49m[43mmod[49m[43m)[49m
-[1;32m    244[0m [38;5;28;01mreturn[39;00m [38;5;28mgetattr[39m(mod, name)
+Cell [0;32mIn[5], line 4[0m, in [0;36mget_gateway_cluster[0;34m()[0m
+[1;32m      1[0m [38;5;28;01mdef[39;00m [38;5;21mget_gateway_cluster[39m():
+[1;32m      2[0m [38;5;250m    [39m[38;5;124;03m""" Create cluster through dask_gateway[39;00m
+[1;32m      3[0m [38;5;124;03m    """[39;00m
+[0;32m----> 4[0m     [38;5;28;01mfrom[39;00m [38;5;21;01mdask_gateway[39;00m [38;5;28;01mimport[39;00m Gateway
+[1;32m      6[0m     gateway [38;5;241m=[39m Gateway()
+[1;32m      7[0m     cluster [38;5;241m=[39m gateway[38;5;241m.[39mnew_cluster()
 
-File [0;32m/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/importlib/__init__.py:126[0m, in [0;36mimport_module[0;34m(name, package)[0m
-[1;32m    125[0m         level [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
-[0;32m--> 126[0m [38;5;28;01mreturn[39;00m [43m_bootstrap[49m[38;5;241;43m.[39;49m[43m_gcd_import[49m[43m([49m[43mname[49m[43m[[49m[43mlevel[49m[43m:[49m[43m][49m[43m,[49m[43m [49m[43mpackage[49m[43m,[49m[43m [49m[43mlevel[49m[43m)[49m
-
-File [0;32m<frozen importlib._bootstrap>:1206[0m, in [0;36m_gcd_import[0;34m(name, package, level)[0m
-
-File [0;32m<frozen importlib._bootstrap>:1178[0m, in [0;36m_find_and_load[0;34m(name, import_)[0m
-
-File [0;32m<frozen importlib._bootstrap>:1149[0m, in [0;36m_find_and_load_unlocked[0;34m(name, import_)[0m
-
-File [0;32m<frozen importlib._bootstrap>:690[0m, in [0;36m_load_unlocked[0;34m(spec)[0m
-
-File [0;32m<frozen importlib._bootstrap_external>:940[0m, in [0;36mexec_module[0;34m(self, module)[0m
-
-File [0;32m<frozen importlib._bootstrap>:241[0m, in [0;36m_call_with_frames_removed[0;34m(f, *args, **kwds)[0m
-
-File [0;32m/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/implementations/http.py:11[0m
-[1;32m      9[0m [38;5;28;01mfrom[39;00m [38;5;21;01murllib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mparse[39;00m [38;5;28;01mimport[39;00m urlparse
-[0;32m---> 11[0m [38;5;28;01mimport[39;00m [38;5;21;01maiohttp[39;00m
-[1;32m     12[0m [38;5;28;01mimport[39;00m [38;5;21;01mrequests[39;00m
-
-[0;31mModuleNotFoundError[0m: No module named 'aiohttp'
-
-The above exception was the direct cause of the following exception:
-
-[0;31mImportError[0m                               Traceback (most recent call last)
-Cell [0;32mIn[5], line 2[0m
-[1;32m      1[0m [38;5;66;03m# Have the catalog interpret the "na-cordex-models" column as a list of values, as opposed to single values.[39;00m
-[0;32m----> 2[0m col [38;5;241m=[39m [43mintake[49m[38;5;241;43m.[39;49m[43mopen_esm_datastore[49m[43m([49m[43mcatalog_url[49m[43m,[49m[43m [49m[43mread_csv_kwargs[49m[38;5;241;43m=[39;49m[43m{[49m[38;5;124;43m"[39;49m[38;5;124;43mconverters[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[43m{[49m[38;5;124;43m"[39;49m[38;5;124;43mna-cordex-models[39;49m[38;5;124;43m"[39;49m[43m:[49m[43m [49m[43mast[49m[38;5;241;43m.[39;49m[43mliteral_eval[49m[43m}[49m[43m}[49m[43m,[49m[43m)[49m
-[1;32m      3[0m col
-
-File [0;32m/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/intake_esm/core.py:107[0m, in [0;36mesm_datastore.__init__[0;34m(self, obj, progressbar, sep, registry, read_csv_kwargs, columns_with_iterables, storage_options, **intake_kwargs)[0m
-[1;32m    105[0m     [38;5;28mself[39m[38;5;241m.[39mesmcat [38;5;241m=[39m ESMCatalogModel[38;5;241m.[39mfrom_dict(obj)
-[1;32m    106[0m [38;5;28;01melse[39;00m:
-[0;32m--> 107[0m     [38;5;28mself[39m[38;5;241m.[39mesmcat [38;5;241m=[39m [43mESMCatalogModel[49m[38;5;241;43m.[39;49m[43mload[49m[43m([49m
-[1;32m    108[0m [43m        [49m[43mobj[49m[43m,[49m[43m [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mstorage_options[49m[43m,[49m[43m [49m[43mread_csv_kwargs[49m[38;5;241;43m=[39;49m[43mread_csv_kwargs[49m
-[1;32m    109[0m [43m    [49m[43m)[49m
-[1;32m    111[0m [38;5;28mself[39m[38;5;241m.[39mderivedcat [38;5;241m=[39m registry [38;5;129;01mor[39;00m default_registry
-[1;32m    112[0m [38;5;28mself[39m[38;5;241m.[39m_entries [38;5;241m=[39m {}
-
-File [0;32m/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/intake_esm/cat.py:251[0m, in [0;36mESMCatalogModel.load[0;34m(cls, json_file, storage_options, read_csv_kwargs)[0m
-[1;32m    249[0m read_csv_kwargs [38;5;241m=[39m read_csv_kwargs [38;5;129;01mor[39;00m {}
-[1;32m    250[0m json_file [38;5;241m=[39m [38;5;28mstr[39m(json_file)  [38;5;66;03m# We accept Path, but fsspec doesn't.[39;00m
-[0;32m--> 251[0m _mapper [38;5;241m=[39m [43mfsspec[49m[38;5;241;43m.[39;49m[43mget_mapper[49m[43m([49m[43mjson_file[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mstorage_options[49m[43m)[49m
-[1;32m    253[0m [38;5;28;01mwith[39;00m fsspec[38;5;241m.[39mopen(json_file, [38;5;241m*[39m[38;5;241m*[39mstorage_options) [38;5;28;01mas[39;00m fobj:
-[1;32m    254[0m     data [38;5;241m=[39m json[38;5;241m.[39mloads(fobj[38;5;241m.[39mread())
-
-File [0;32m/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/mapping.py:237[0m, in [0;36mget_mapper[0;34m(url, check, create, missing_exceptions, alternate_root, **kwargs)[0m
-[1;32m    206[0m [38;5;250m[39m[38;5;124;03m"""Create key-value interface for given URL and options[39;00m
-[1;32m    207[0m 
-[1;32m    208[0m [38;5;124;03mThe URL will be of the form "protocol://location" and point to the root[39;00m
-[0;32m   (...)[0m
-[1;32m    234[0m [38;5;124;03m``FSMap`` instance, the dict-like key-value store.[39;00m
-[1;32m    235[0m [38;5;124;03m"""[39;00m
-[1;32m    236[0m [38;5;66;03m# Removing protocol here - could defer to each open() on the backend[39;00m
-[0;32m--> 237[0m fs, urlpath [38;5;241m=[39m [43murl_to_fs[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
-[1;32m    238[0m root [38;5;241m=[39m alternate_root [38;5;28;01mif[39;00m alternate_root [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;28;01melse[39;00m urlpath
-[1;32m    239[0m [38;5;28;01mreturn[39;00m FSMap(root, fs, check, create, missing_exceptions[38;5;241m=[39mmissing_exceptions)
-
-File [0;32m/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/core.py:363[0m, in [0;36murl_to_fs[0;34m(url, **kwargs)[0m
-[1;32m    343[0m [38;5;28;01mdef[39;00m [38;5;21murl_to_fs[39m(url, [38;5;241m*[39m[38;5;241m*[39mkwargs):
-[1;32m    344[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
-[1;32m    345[0m [38;5;124;03m    Turn fully-qualified and potentially chained URL into filesystem instance[39;00m
-[1;32m    346[0m 
-[0;32m   (...)[0m
-[1;32m    361[0m [38;5;124;03m        The file-systems-specific URL for ``url``.[39;00m
-[1;32m    362[0m [38;5;124;03m    """[39;00m
-[0;32m--> 363[0m     chain [38;5;241m=[39m [43m_un_chain[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mkwargs[49m[43m)[49m
-[1;32m    364[0m     inkwargs [38;5;241m=[39m {}
-[1;32m    365[0m     [38;5;66;03m# Reverse iterate the chain, creating a nested target_* structure[39;00m
-
-File [0;32m/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/core.py:325[0m, in [0;36m_un_chain[0;34m(path, kwargs)[0m
-[1;32m    323[0m [38;5;28;01mfor[39;00m bit [38;5;129;01min[39;00m [38;5;28mreversed[39m(bits):
-[1;32m    324[0m     protocol [38;5;241m=[39m kwargs[38;5;241m.[39mpop([38;5;124m"[39m[38;5;124mprotocol[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m) [38;5;129;01mor[39;00m split_protocol(bit)[[38;5;241m0[39m] [38;5;129;01mor[39;00m [38;5;124m"[39m[38;5;124mfile[39m[38;5;124m"[39m
-[0;32m--> 325[0m     [38;5;28mcls[39m [38;5;241m=[39m [43mget_filesystem_class[49m[43m([49m[43mprotocol[49m[43m)[49m
-[1;32m    326[0m     extra_kwargs [38;5;241m=[39m [38;5;28mcls[39m[38;5;241m.[39m_get_kwargs_from_urls(bit)
-[1;32m    327[0m     kws [38;5;241m=[39m kwargs[38;5;241m.[39mpop(protocol, {})
-
-File [0;32m/usr/share/miniconda3/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/fsspec/registry.py:222[0m, in [0;36mget_filesystem_class[0;34m(protocol)[0m
-[1;32m    220[0m         register_implementation(protocol, _import_class(bit[[38;5;124m"[39m[38;5;124mclass[39m[38;5;124m"[39m]))
-[1;32m    221[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m [38;5;28;01mas[39;00m e:
-[0;32m--> 222[0m         [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(bit[[38;5;124m"[39m[38;5;124merr[39m[38;5;124m"[39m]) [38;5;28;01mfrom[39;00m [38;5;21;01me[39;00m
-[1;32m    223[0m [38;5;28mcls[39m [38;5;241m=[39m registry[protocol]
-[1;32m    224[0m [38;5;28;01mif[39;00m [38;5;28mgetattr[39m([38;5;28mcls[39m, [38;5;124m"[39m[38;5;124mprotocol[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m) [38;5;129;01min[39;00m ([38;5;124m"[39m[38;5;124mabstract[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m):
-
-[0;31mImportError[0m: HTTPFileSystem requires "requests" and "aiohttp" to be installed
+[0;31mModuleNotFoundError[0m: No module named 'dask_gateway'
 
