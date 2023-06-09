@@ -327,11 +327,6 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Create and Connect to Dask Distributed Cluster
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#find-and-obtain-data-using-an-intake-catalog">
    Find and Obtain Data Using an Intake Catalog
   </a>
@@ -354,8 +349,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#functions-for-plotting">
-   Functions for Plotting
+  <a class="reference internal nav-link" href="#functions-for-subsetting-and-plotting">
+   Functions for Subsetting and Plotting
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -402,7 +397,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#optional-save-figure-to-a-png-file">
-       Optional: save figure to a PNG file
+       Optional: Save figure to a PNG file
       </a>
      </li>
     </ul>
@@ -413,8 +408,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       Optional: save figure to a PNG file
+      <a class="reference internal nav-link" href="#id1">
+       Optional: Save figure to a PNG file
       </a>
      </li>
     </ul>
@@ -425,8 +420,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id3">
-       Optional: save figure to a PNG file
+      <a class="reference internal nav-link" href="#id2">
+       Optional: Save figure to a PNG file
       </a>
      </li>
     </ul>
@@ -558,9 +553,6 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id1">
-<h2>Create and Connect to Dask Distributed Cluster<a class="headerlink" href="#id1" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">USE_PBS_SCHEDULER</span><span class="p">:</span>
@@ -710,8 +702,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 </div>
-<div class="section" id="functions-for-plotting">
-<h2>Functions for Plotting<a class="headerlink" href="#functions-for-plotting" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<div class="section" id="functions-for-subsetting-and-plotting">
+<h2>Functions for Subsetting and Plotting<a class="headerlink" href="#functions-for-subsetting-and-plotting" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="section" id="helper-function-to-create-a-single-map-plot">
 <h3>Helper Function to Create a Single Map Plot<a class="headerlink" href="#helper-function-to-create-a-single-map-plot" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
@@ -956,8 +948,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="section" id="optional-save-figure-to-a-png-file">
-<h4>Optional: save figure to a PNG file<a class="headerlink" href="#optional-save-figure-to-a-png-file" title="Permalink to this headline"><i class="fas fa-link"></i></a></h4>
-<p>Change the value of SAVE_PLOT to True to produce a PNG file of the plot.   The file will be saved in the same folder as this notebook.</p>
+<h4>Optional: Save figure to a PNG file<a class="headerlink" href="#optional-save-figure-to-a-png-file" title="Permalink to this headline"><i class="fas fa-link"></i></a></h4>
+<p>Change the value of <code class="docutils literal notranslate"><span class="pre">SAVE_PLOT</span></code> to True to produce a PNG file of the plot.   The file will be saved in the same folder as this notebook.</p>
 <p>Then use Jupyter’s file browser to locate the file and right-click the file to download it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -985,9 +977,9 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 </div>
-<div class="section" id="id2">
-<h4>Optional: save figure to a PNG file<a class="headerlink" href="#id2" title="Permalink to this headline"><i class="fas fa-link"></i></a></h4>
-<p>Change the value of SAVE_PLOT to True to produce a PNG file of the plot.   The file will be saved in the same folder as this notebook.</p>
+<div class="section" id="id1">
+<h4>Optional: Save figure to a PNG file<a class="headerlink" href="#id1" title="Permalink to this headline"><i class="fas fa-link"></i></a></h4>
+<p>Change the value of <code class="docutils literal notranslate"><span class="pre">SAVE_PLOT</span></code> to True to produce a PNG file of the plot.   The file will be saved in the same folder as this notebook.</p>
 <p>Then use Jupyter’s file browser to locate the file and right-click the file to download it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1015,9 +1007,9 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 </div>
-<div class="section" id="id3">
-<h4>Optional: save figure to a PNG file<a class="headerlink" href="#id3" title="Permalink to this headline"><i class="fas fa-link"></i></a></h4>
-<p>Change the value of SAVE_PLOT to True to produce a PNG file of the plot.   The file will be saved in the same folder as this notebook.</p>
+<div class="section" id="id2">
+<h4>Optional: Save figure to a PNG file<a class="headerlink" href="#id2" title="Permalink to this headline"><i class="fas fa-link"></i></a></h4>
+<p>Change the value of <code class="docutils literal notranslate"><span class="pre">SAVE_PLOT</span></code> to True to produce a PNG file of the plot.   The file will be saved in the same folder as this notebook.</p>
 <p>Then use Jupyter’s file browser to locate the file and right-click the file to download it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
