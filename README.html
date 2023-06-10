@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>(Replace_with_your_title) Cookbook &#8212; Project Pythia Cookbook Template</title>
+    <title>NA-CORDEX Data Visualization Cookbook &#8212; NA-CORDEX Visualization Notebook</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Project Pythia Notebook Template" href="notebooks/notebook-template.html" />
+    <link rel="next" title="Make Diagnostic Plots for NA-CORDEX Zarr Stores" href="notebooks/plot-diagnostics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -181,19 +181,19 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
-   (Replace_with_your_title) Cookbook
+   NA-CORDEX Data Visualization Cookbook
   </a>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Introduction
+  Plot NA-CORDEX Data Diagnostics
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="notebooks/notebook-template.html">
-   Project Pythia Notebook Template
+  <a class="reference internal" href="notebooks/plot-diagnostics.html">
+   Make Diagnostic Plots for NA-CORDEX Zarr Stores
   </a>
  </li>
 </ul>
@@ -305,13 +305,28 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#section-1-replace-with-the-title-of-this-section-e-g-foundations">
-     Section 1 ( Replace with the title of this section, e.g. “Foundations” )
+    <a class="reference internal nav-link" href="#select-user-options">
+     Select User Options
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#section-2-replace-with-the-title-of-this-section-e-g-example-workflows">
-     Section 2 ( Replace with the title of this section, e.g. “Example workflows” )
+    <a class="reference internal nav-link" href="#create-and-connect-to-dask-distributed-cluster">
+     Create and Connect to Dask Distributed Cluster
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-and-obtain-data-using-an-intake-catalog">
+     Find and Obtain Data Using an Intake Catalog
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-for-subsetting-and-plotting">
+     Functions for Subsetting and Plotting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#produce-diagnostic-plots">
+     Produce Diagnostic Plots
     </a>
    </li>
   </ul>
@@ -345,35 +360,55 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
               <div>
                 
   <a class="reference internal image-reference" href="_images/thumbnail.png"><img alt="thumbnail" src="_images/thumbnail.png" style="width: 300px;" /></a>
-<div class="tex2jax_ignore mathjax_ignore section" id="replace-with-your-title-cookbook">
-<h1>(Replace_with_your_title) Cookbook<a class="headerlink" href="#replace-with-your-title-cookbook" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
-<p><a class="reference external" href="https://github.com/ProjectPythia/cookbook-template/actions/workflows/nightly-build.yaml"><img alt="nightly-build" src="https://github.com/ProjectPythia/cookbook-template/actions/workflows/nightly-build.yaml/badge.svg" /></a>
-<a class="reference external" href="http://binder.mypythia.org/v2/gh/ProjectPythia/cookbook-template/main?labpath=notebooks"><img alt="Binder" src="http://binder.mypythia.org/badge_logo.svg" /></a></p>
-<p>This Project Pythia Cookbook covers … (replace <code class="docutils literal notranslate"><span class="pre">...</span></code> with the main subject of your cookbook … e.g., <em>working with radar data in Python</em>)</p>
+<div class="tex2jax_ignore mathjax_ignore section" id="na-cordex-data-visualization-cookbook">
+<h1>NA-CORDEX Data Visualization Cookbook<a class="headerlink" href="#na-cordex-data-visualization-cookbook" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<p><a class="reference external" href="https://github.com/NCAR/na-cordex-viz-cookbook/actions/workflows/nightly-build.yaml"><img alt="nightly-build" src="https://github.com/NCAR/na-cordex-viz-cookbook/actions/workflows/nightly-build.yaml/badge.svg" /></a>
+<a class="reference external" href="http://binder.mypythia.org/v2/gh/NCAR/na-cordex-viz-cookbook/main?labpath=notebooks"><img alt="Binder" src="http://binder.mypythia.org/badge_logo.svg" /></a></p>
+<p>This Project Pythia Cookbook covers how to load and view data summaries from the NA-CORDEX dataset.  Documentation for the NA-CORDEX dataset can be found here:  https://na-cordex.org/na-cordex-on-aws.html</p>
 <div class="section" id="motivation">
 <h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>(Add a few sentences stating why this cookbook will be useful. What skills will you, “the chef”, gain once you have reached the end of the cookbook?)</p>
+<p>This cookbook provides useful methods for summarizing data values in large climate datasets.   It clearly shows where data have extreme values and where data are missing; this can be useful for validating that the data were gathered and stored correctly.   While this cookbook is specifically designed to examine any portion of the NA-CORDEX dataset using an intake catalog, the code can be adapted straightforwardly to other datasets that can be loaded via <code class="docutils literal notranslate"><span class="pre">xarray</span></code>.</p>
+<p>The main python packages used are <code class="docutils literal notranslate"><span class="pre">xarray</span></code>, <code class="docutils literal notranslate"><span class="pre">intake-esm</span></code>, <code class="docutils literal notranslate"><span class="pre">dask</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
 </div>
 <div class="section" id="authors">
 <h2>Authors<a class="headerlink" href="#authors" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p><span class="xref myst">First Author</span>, <span class="xref myst">Second Author</span>, etc. <em>Acknowledge primary content authors here</em></p>
+<p><span class="xref myst">Brian Bonnlander</span>, <span class="xref myst">Seth McGinnis</span></p>
 <div class="section" id="contributors">
 <h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
-<a href="https://github.com/ProjectPythia/cookbook-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ProjectPythia/cookbook-template" />
+<a href="https://github.com/NCAR/na-cordex-viz-cookbook/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NCAR/na-cordex-viz-cookbook" />
 </a>
 </div>
 </div>
 <div class="section" id="structure">
 <h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>(State one or more sections that will comprise the notebook. E.g., <em>This cookbook is broken up into two main sections - “Foundations” and “Example Workflows.”</em> Then, describe each section below.)</p>
-<div class="section" id="section-1-replace-with-the-title-of-this-section-e-g-foundations">
-<h3>Section 1 ( Replace with the title of this section, e.g. “Foundations” )<a class="headerlink" href="#section-1-replace-with-the-title-of-this-section-e-g-foundations" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
-<p>(Add content for this section, e.g., “The foundational content includes … “)</p>
+<p>This cookbook is a single notebook broken into several sections.   The first section allows users to tailor the notebook to their chosen computing environment and storage cloud.  Other sections contain code for subsetting and plotting data, obtaining Dask workers, and producing summary plots.</p>
+<div class="section" id="select-user-options">
+<h3>Select User Options<a class="headerlink" href="#select-user-options" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>Users may choose the value of several boolean switches:</p>
+<ul class="simple">
+<li><p>Cloud storage provider (Amazon AWS or NCAR),</p></li>
+<li><p>Whether to truncate the data if running on a resource-limited computer,</p></li>
+<li><p>Whether to obtain a Dask cluster from a PBS Scheduler or via the Dask Gateway package.</p></li>
+</ul>
+<p><strong>Note</strong>: Using the NCAR cloud storage system requires a login account on an NCAR HPC computer.</p>
 </div>
-<div class="section" id="section-2-replace-with-the-title-of-this-section-e-g-example-workflows">
-<h3>Section 2 ( Replace with the title of this section, e.g. “Example workflows” )<a class="headerlink" href="#section-2-replace-with-the-title-of-this-section-e-g-example-workflows" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
-<p>(Add content for this section, e.g., “Example workflows include … “)</p>
+<div class="section" id="create-and-connect-to-dask-distributed-cluster">
+<h3>Create and Connect to Dask Distributed Cluster<a class="headerlink" href="#create-and-connect-to-dask-distributed-cluster" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>This section shows several possible ways to create and connect to a Dask cluster for processing data in parallel.</p>
+<p>The two provided ways include using either a PBS Scheduler or a Dask Gateway.</p>
+</div>
+<div class="section" id="find-and-obtain-data-using-an-intake-catalog">
+<h3>Find and Obtain Data Using an Intake Catalog<a class="headerlink" href="#find-and-obtain-data-using-an-intake-catalog" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>This section shows how to interact with an Intake-ESM catalog to find, select, and open datasets via <code class="docutils literal notranslate"><span class="pre">xarray</span></code>.</p>
+</div>
+<div class="section" id="functions-for-subsetting-and-plotting">
+<h3>Functions for Subsetting and Plotting<a class="headerlink" href="#functions-for-subsetting-and-plotting" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>This section provides python functions for subsetting and plotting data.   They rely on the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> packages, and can be generalized to other climate datasets.</p>
+</div>
+<div class="section" id="produce-diagnostic-plots">
+<h3>Produce Diagnostic Plots<a class="headerlink" href="#produce-diagnostic-plots" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>This section produces the diagnostic plots.   It shows how to produce timing information and gives options for saving high-resolution images of the resulting plots.</p>
 </div>
 </div>
 <div class="section" id="running-the-notebooks">
@@ -401,21 +436,22 @@ Jupyter</a>.</p>
 <p>If you are interested in running this material locally on your computer, you will need to follow this workflow:</p>
 <p>(Replace “cookbook-example” with the title of your cookbooks)</p>
 <ol class="arabic">
-<li><p>Clone the <code class="docutils literal notranslate"><span class="pre">https://github.com/ProjectPythia/cookbook-example</span></code> repository:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ProjectPythia/cookbook-example.git
+<li><p>Clone the <code class="docutils literal notranslate"><span class="pre">https://github.com/NCAR/na-cordex-viz-cookbook</span></code> repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NCAR/na-cordex-viz-cookbook.git
 </pre></div>
 </div>
 </li>
-<li><p>Move into the <code class="docutils literal notranslate"><span class="pre">cookbook-example</span></code> directory</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>cookbook-example
+<li><p>Move into the <code class="docutils literal notranslate"><span class="pre">na-cordex-viz-cookbook</span></code> directory</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>na-cordex-viz-cookbook
 </pre></div>
 </div>
 </li>
 <li><p>Create and activate your conda environment from the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
-conda<span class="w"> </span>activate<span class="w"> </span>cookbook-example
+conda<span class="w"> </span>activate<span class="w"> </span>na-cordex-viz-cookbook
 </pre></div>
 </div>
+<p><strong>Note</strong>: If building the environment fails using conda, consider instead installing the <code class="docutils literal notranslate"><span class="pre">mamba</span></code> package and using <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">-f</span> <span class="pre">environment.yml</span></code>.</p>
 </li>
 <li><p>Move into the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> directory and start up Jupyterlab</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>notebooks/
@@ -453,10 +489,10 @@ jupyter<span class="w"> </span>lab
               </div>
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="notebooks/notebook-template.html" title="next page">
+    <a class='right-next' id="next-link" href="notebooks/plot-diagnostics.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Project Pythia Notebook Template</p>
+        <p class="prev-next-title">Make Diagnostic Plots for NA-CORDEX Zarr Stores</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -501,11 +537,11 @@ jupyter<span class="w"> </span>lab
     <div class="container-xl">
       <div class="d-flex justify-content-center">
         <p class="py-1 m-0">
-            &copy;&nbsp;2022.
+            &copy;&nbsp;2023.
         
-          By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
+          By Brian Bonnlander, Seth McGinnis, Anderson Banihirwe, Eric Nienhouse, Jeff de La Beaujardière.
         
-          Last updated on 13 April 2023.
+          Last updated on 10 June 2023.
         </p>
       </div>
     </div>
