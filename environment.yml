@@ -19,7 +19,7 @@ dependencies:
 - tqdm
 - watermark
 - xarray>=2023.4.2
-# For Pythia oookbook-related builds
+# For Pythia cookbook-related builds
 - jupyter-book
 - jupyterlab
 - jupyter_server<2
