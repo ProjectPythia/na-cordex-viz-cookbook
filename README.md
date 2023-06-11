@@ -80,8 +80,6 @@ Jupyter](https://foundations.projectpythia.org/foundations/getting-started-jupyt
 
 If you are interested in running this material locally on your computer, you will need to follow this workflow:
 
-(Replace "cookbook-example" with the title of your cookbooks)
-
 1. Clone the `https://github.com/NCAR/na-cordex-viz-cookbook` repository:
 
    ```bash
