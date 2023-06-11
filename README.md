@@ -95,7 +95,7 @@ If you are interested in running this material locally on your computer, you wil
    conda env create -f environment.yml
    conda activate na-cordex-viz-cookbook
    ```
-   **Note**: If building the environment fails using conda, consider instead installing the `mamba` package and using `mamba env create -f environment.yml`.
+   **Note**: If building the environment stalls using conda, consider instead installing the `mamba` package and using `mamba env create -f environment.yml`.
    
 1. Move into the `notebooks` directory and start up Jupyterlab
    ```bash
