@@ -1,4 +1,4 @@
-<img src="thumbnail.png" alt="thumbnail" width="300"/>
+<img src="thumbnail.png" alt="thumbnail" width="900"/>
 
 # NA-CORDEX Data Visualization Cookbook
 
@@ -80,8 +80,6 @@ Jupyter](https://foundations.projectpythia.org/foundations/getting-started-jupyt
 
 If you are interested in running this material locally on your computer, you will need to follow this workflow:
 
-(Replace "cookbook-example" with the title of your cookbooks)
-
 1. Clone the `https://github.com/NCAR/na-cordex-viz-cookbook` repository:
 
    ```bash
@@ -97,7 +95,7 @@ If you are interested in running this material locally on your computer, you wil
    conda env create -f environment.yml
    conda activate na-cordex-viz-cookbook
    ```
-   **Note**: If building the environment fails using conda, consider instead installing the `mamba` package and using `mamba env create -f environment.yml`.
+   **Note**: If building the environment stalls using conda, consider instead installing the `mamba` package and using `mamba env create -f environment.yml`.
    
 1. Move into the `notebooks` directory and start up Jupyterlab
    ```bash
