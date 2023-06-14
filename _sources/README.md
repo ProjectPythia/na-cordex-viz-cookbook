@@ -2,8 +2,8 @@
 
 # NA-CORDEX Data Visualization Cookbook
 
-[![nightly-build](https://github.com/NCAR/na-cordex-viz-cookbook/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/NCAR/na-cordex-viz-cookbook/actions/workflows/nightly-build.yaml)
-[![Binder](http://binder.mypythia.org/badge_logo.svg)](http://binder.mypythia.org/v2/gh/NCAR/na-cordex-viz-cookbook/main?labpath=notebooks)
+[![nightly-build](https://github.com/ProjectPythia/na-cordex-viz-cookbook/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/ProjectPythia/na-cordex-viz-cookbook/actions/workflows/nightly-build.yaml)
+[![Binder](http://binder.mypythia.org/badge_logo.svg)](http://binder.mypythia.org/v2/gh/ProjectPythia/na-cordex-viz-cookbook/main?labpath=notebooks)
 
 This Project Pythia Cookbook covers how to load and view data summaries from the NA-CORDEX dataset.  Documentation for the NA-CORDEX dataset can be found here:  https://na-cordex.org/na-cordex-on-aws.html
 
@@ -19,8 +19,8 @@ The main python packages used are `xarray`, `intake-esm`, `dask`, and `matplotli
 
 ### Contributors
 
-<a href="https://github.com/NCAR/na-cordex-viz-cookbook/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=NCAR/na-cordex-viz-cookbook" />
+<a href="https://github.com/ProjectPythia/na-cordex-viz-cookbook/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ProjectPythia/na-cordex-viz-cookbook" />
 </a>
 
 ## Structure
@@ -80,10 +80,10 @@ Jupyter](https://foundations.projectpythia.org/foundations/getting-started-jupyt
 
 If you are interested in running this material locally on your computer, you will need to follow this workflow:
 
-1. Clone the `https://github.com/NCAR/na-cordex-viz-cookbook` repository:
+1. Clone the `https://github.com/ProjectPythia/na-cordex-viz-cookbook` repository:
 
    ```bash
-    git clone https://github.com/NCAR/na-cordex-viz-cookbook.git
+    git clone https://github.com/ProjectPythia/na-cordex-viz-cookbook.git
    ```
 
 1. Move into the `na-cordex-viz-cookbook` directory
