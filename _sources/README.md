@@ -41,7 +41,7 @@ Users may choose the value of several boolean switches:
 
 This section shows several possible ways to create and connect to a Dask cluster for processing data in parallel.
 
-The two provided ways include using either a PBS Scheduler or a Dask Gateway.  
+The user can choose to obtain workers using a PBS Scheduler, Dask Gateway, or a dask LocalCluster.
 
 ### Find and Obtain Data Using an Intake Catalog
 
