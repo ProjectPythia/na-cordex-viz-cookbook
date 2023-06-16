@@ -11,9 +11,18 @@ description: A notebook for visualizing data from the NA-CORDEX dataset.
 thumbnail: thumbnail.png
 tags:
   domains:
-    - atmosphere climate "climate model" geospatial "land model" sustainability zarr 
+    - atmosphere
+    - climate
+    - climate model
+    - geospatial
+    - land model
+    - sustainability 
+    - zarr 
   packages:
-    - xarray dask intake-esm matplotlib
+    - xarray 
+    - dask 
+    - intake-esm 
+    - matplotlib
 
 execute:
   # To execute notebooks via a binder instead, replace 'cache' with 'binder'
