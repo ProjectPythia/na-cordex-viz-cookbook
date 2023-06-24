@@ -18,7 +18,7 @@ authors:
     affiliation: Former Director, NCAR/CISL Information Systems Division
     website: https://staff.ucar.edu/users/jeffdlb
     orcid: https://orcid.org/0000-0002-1001-9210
-  - name: "NA-CORDEX Visualization Cookbookcontributors" # use the 'name' field to acknowledge organizations
+  - name: "NA-CORDEX Visualization Cookbook contributors" # use the 'name' field to acknowledge organizations
     website: "https://github.com/ProjectPythia/na-cordex-viz-cookbook/graphs/contributors"
 title: "NA-CORDEX Visualization Cookbook"
 abstract: "A notebook for visualizing data from the NA-CORDEX dataset."
