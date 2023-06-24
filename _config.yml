@@ -1,28 +1,10 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: NA-CORDEX Visualization Notebook
+title: NA-CORDEX Visualization Cookbook
 author: Brian Bonnlander, Seth McGinnis, Anderson Banihirwe, Eric Nienhouse, Jeff de La Beaujardière
 logo: notebooks/images/logos/pythia_logo-white-rtext.svg
-email: projectpythia@ucar.edu
 copyright: "2023"
-
-description: A notebook for visualizing data from the NA-CORDEX dataset.
-thumbnail: thumbnail.png
-tags:
-  domains:
-    - atmosphere
-    - climate
-    - climate model
-    - geospatial
-    - land model
-    - sustainability 
-    - zarr 
-  packages:
-    - xarray 
-    - dask 
-    - intake-esm 
-    - matplotlib
 
 execute:
   # To execute notebooks via a binder instead, replace 'cache' with 'binder'
@@ -49,7 +31,7 @@ sphinx:
     linkcheck_ignore: ["https://doi.org/*"] # don't run link checker on DOI links since they are immutable
     nb_execution_raise_on_error: true # raise exception in build if there are notebook errors (this flag is ignored if building on binder)
     html_favicon: notebooks/images/icons/favicon.ico
-    html_last_updated_fmt: '%-d %B %Y'
+    html_last_updated_fmt: "%-d %B %Y"
     html_theme: sphinx_pythia_theme
     html_permalinks_icon: '<i class="fas fa-link"></i>'
     html_theme_options:
