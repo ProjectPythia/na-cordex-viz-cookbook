@@ -1,0 +1,15 @@
+thumbnail: thumbnail.png
+tags:
+  domains:
+    - atmosphere
+    - climate
+    - climate model
+    - geospatial
+    - land model
+    - sustainability
+    - zarr
+  packages:
+    - xarray
+    - dask
+    - intake-esm
+    - matplotlib

@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this cookbook, please cite it as below."
+authors:
+  # add additional entries for each author -- see https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md
+  - family-names: Bonnlander
+    given-names: Brian
+    website: https://github.com/bonnland
+  - family-names: McGinnis
+    given-names: Seth
+  - family-names: Banihirwe
+    given-names: Anderson
+    orcid: https://orcid.org/0000-0001-6583-571X
+    website: https://github.com/andersy005
+  - family-names: Nienhouse
+    given-names: Eric
+  - family-names: de La Beaujardière
+    given-names: Jeff
+    affiliation: Former Director, NCAR/CISL Information Systems Division
+    website: https://staff.ucar.edu/users/jeffdlb
+    orcid: https://orcid.org/0000-0002-1001-9210
+  - name: "NA-CORDEX Visualization Cookbook contributors" # use the 'name' field to acknowledge organizations
+    website: "https://github.com/ProjectPythia/na-cordex-viz-cookbook/graphs/contributors"
+title: "NA-CORDEX Visualization Cookbook"
+abstract: "A notebook for visualizing data from the NA-CORDEX dataset."
