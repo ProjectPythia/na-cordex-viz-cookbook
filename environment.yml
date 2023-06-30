@@ -23,7 +23,7 @@ dependencies:
 # For Pythia cookbook-related builds
 - jupyter-book
 - jupyterlab
-- jupyter_serve
+- jupyter_server
 - pip
 - pip:
     - sphinx-pythia-theme
