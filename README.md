@@ -6,7 +6,12 @@
 [![Binder](https://binder.projectpythia.org/badge_logo.svg)](http://binder.projectpythia.org/v2/gh/ProjectPythia/na-cordex-viz-cookbook/main?labpath=notebooks)
 [![DOI](https://zenodo.org/badge/635958518.svg)](https://zenodo.org/badge/latestdoi/635958518)
 
-This Project Pythia Cookbook covers how to load and view data summaries from the NA-CORDEX dataset. Documentation for the NA-CORDEX dataset can be found here: https://na-cordex.org/na-cordex-on-aws.html
+The NA-CORDEX data archive contains cloud-optimized, Zarr-based output from regional climate models (RCMs) run over a domain covering most of North America using boundary conditions from global climate model (GCM) simulations in the CMIP5 archive. These simulations run from 1950–2100 with a spatial resolution of 0.22°/25km or 0.44°/50km. Data is available for impacts-relevant variables at daily and longer frequencies.
+
+This Project Pythia Cookbook covers how to load and view data summaries from the NA-CORDEX dataset. 
+
+- Complete documentation for the cloud-optimized version of the NA-CORDEX dataset can be found here: https://na-cordex.org/na-cordex-on-aws.html
+- More information on the scope and objectives for NA-CORDEX can be found here:  https://na-cordex.org/index.html
 
 ## Motivation
 
