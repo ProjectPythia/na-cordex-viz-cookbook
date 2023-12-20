@@ -16,7 +16,7 @@ dependencies:
 - nc-time-axis
 - pip
 - pytest
-- python>=3.8
+- python<=3.11
 - tqdm
 - watermark
 - xarray>=2023.4.2
