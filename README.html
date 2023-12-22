@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NA-CORDEX Data Visualization Cookbook &#8212; NA-CORDEX Visualization Notebook</title>
+    <title>NA-CORDEX Data Visualization Cookbook &#8212; NA-CORDEX Visualization Cookbook</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Make Diagnostic Plots for NA-CORDEX Zarr Stores" href="notebooks/plot-diagnostics.html" />
+    <link rel="next" title="How to Cite This Cookbook" href="notebooks/how-to-cite.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -182,6 +182,18 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
    NA-CORDEX Data Visualization Cookbook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Preamble
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks/how-to-cite.html">
+   How to Cite This Cookbook
   </a>
  </li>
 </ul>
@@ -363,11 +375,17 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <div class="tex2jax_ignore mathjax_ignore section" id="na-cordex-data-visualization-cookbook">
 <h1>NA-CORDEX Data Visualization Cookbook<a class="headerlink" href="#na-cordex-data-visualization-cookbook" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
 <p><a class="reference external" href="https://github.com/ProjectPythia/na-cordex-viz-cookbook/actions/workflows/nightly-build.yaml"><img alt="nightly-build" src="https://github.com/ProjectPythia/na-cordex-viz-cookbook/actions/workflows/nightly-build.yaml/badge.svg" /></a>
-<a class="reference external" href="http://binder.projectpythia.org/v2/gh/ProjectPythia/na-cordex-viz-cookbook/main?labpath=notebooks"><img alt="Binder" src="https://binder.projectpythia.org/badge_logo.svg" /></a></p>
-<p>This Project Pythia Cookbook covers how to load and view data summaries from the NA-CORDEX dataset.  Documentation for the NA-CORDEX dataset can be found here:  https://na-cordex.org/na-cordex-on-aws.html</p>
+<a class="reference external" href="http://binder.projectpythia.org/v2/gh/ProjectPythia/na-cordex-viz-cookbook/main?labpath=notebooks"><img alt="Binder" src="https://binder.projectpythia.org/badge_logo.svg" /></a>
+<a class="reference external" href="https://zenodo.org/badge/latestdoi/635958518"><img alt="DOI" src="https://zenodo.org/badge/635958518.svg" /></a></p>
+<p>The NA-CORDEX data archive contains cloud-optimized, Zarr-based output from regional climate models (RCMs) run over a domain covering most of North America using boundary conditions from global climate model (GCM) simulations in the CMIP5 archive. These simulations run from 1950–2100 with a spatial resolution of 0.22°/25km or 0.44°/50km. Data is available for impacts-relevant variables at daily and longer frequencies.</p>
+<p>This Project Pythia Cookbook covers how to load and view data summaries from the NA-CORDEX dataset.</p>
+<ul class="simple">
+<li><p>Complete documentation for the cloud-optimized version of the NA-CORDEX dataset can be found here: https://na-cordex.org/na-cordex-on-aws.html</p></li>
+<li><p>More information on the scope and objectives for NA-CORDEX can be found here:  https://na-cordex.org/index.html</p></li>
+</ul>
 <div class="section" id="motivation">
 <h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>This cookbook provides useful methods for summarizing data values in large climate datasets.   It clearly shows where data have extreme values and where data are missing; this can be useful for validating that the data were gathered and stored correctly.   While this cookbook is specifically designed to examine any portion of the NA-CORDEX dataset using an intake catalog, the code can be adapted straightforwardly to other datasets that can be loaded via <code class="docutils literal notranslate"><span class="pre">xarray</span></code>.</p>
+<p>This cookbook provides useful methods for summarizing data values in large climate datasets. It clearly shows where data have extreme values and where data are missing; this can be useful for validating that the data were gathered and stored correctly. While this cookbook is specifically designed to examine any portion of the NA-CORDEX dataset using an intake catalog, the code can be adapted straightforwardly to other datasets that can be loaded via <code class="docutils literal notranslate"><span class="pre">xarray</span></code>.</p>
 <p>The main python packages used are <code class="docutils literal notranslate"><span class="pre">xarray</span></code>, <code class="docutils literal notranslate"><span class="pre">intake-esm</span></code>, <code class="docutils literal notranslate"><span class="pre">dask</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
 </div>
 <div class="section" id="authors">
@@ -382,7 +400,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 <div class="section" id="structure">
 <h2>Structure<a class="headerlink" href="#structure" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>This cookbook is a single notebook broken into several sections.   The first section allows users to tailor the notebook to their chosen computing environment and storage cloud.  Other sections contain code for subsetting and plotting data, obtaining Dask workers, and producing summary plots.</p>
+<p>This cookbook is a single notebook broken into several sections. The first section allows users to tailor the notebook to their chosen computing environment and storage cloud. Other sections contain code for subsetting and plotting data, obtaining Dask workers, and producing summary plots.</p>
 <div class="section" id="select-user-options">
 <h3>Select User Options<a class="headerlink" href="#select-user-options" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <p>Users may choose the value of several boolean switches:</p>
@@ -404,11 +422,11 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 <div class="section" id="functions-for-subsetting-and-plotting">
 <h3>Functions for Subsetting and Plotting<a class="headerlink" href="#functions-for-subsetting-and-plotting" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
-<p>This section provides python functions for subsetting and plotting data.   They rely on the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> packages, and can be generalized to other climate datasets.</p>
+<p>This section provides python functions for subsetting and plotting data. They rely on the <code class="docutils literal notranslate"><span class="pre">xarray</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> packages, and can be generalized to other climate datasets.</p>
 </div>
 <div class="section" id="produce-diagnostic-plots">
 <h3>Produce Diagnostic Plots<a class="headerlink" href="#produce-diagnostic-plots" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
-<p>This section produces the diagnostic plots.   It shows how to produce timing information and gives options for saving high-resolution images of the resulting plots.</p>
+<p>This section produces the diagnostic plots. It shows how to produce timing information and gives options for saving high-resolution images of the resulting plots.</p>
 </div>
 </div>
 <div class="section" id="running-the-notebooks">
@@ -463,6 +481,8 @@ jupyter<span class="w"> </span>lab
 </div>
 <div class="toctree-wrapper compound">
 </div>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -488,10 +508,10 @@ jupyter<span class="w"> </span>lab
               </div>
               <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="notebooks/plot-diagnostics.html" title="next page">
+    <a class='right-next' id="next-link" href="notebooks/how-to-cite.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Make Diagnostic Plots for NA-CORDEX Zarr Stores</p>
+        <p class="prev-next-title">How to Cite This Cookbook</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -540,7 +560,7 @@ jupyter<span class="w"> </span>lab
         
           By Brian Bonnlander, Seth McGinnis, Anderson Banihirwe, Eric Nienhouse, Jeff de La Beaujardière.
         
-          Last updated on 27 June 2023.
+          Last updated on 22 December 2023.
         </p>
       </div>
     </div>
