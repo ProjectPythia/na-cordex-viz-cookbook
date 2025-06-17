@@ -1,6 +1,6 @@
-<img src="thumbnail.png" alt="thumbnail" width="900"/>
-
 # NA-CORDEX Data Visualization Cookbook
+
+<img src="thumbnail.png" alt="thumbnail" width="900"/>
 
 [![nightly-build](https://github.com/ProjectPythia/na-cordex-viz-cookbook/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/ProjectPythia/na-cordex-viz-cookbook/actions/workflows/nightly-build.yaml)
 [![Binder](https://binder.projectpythia.org/badge_logo.svg)](http://binder.projectpythia.org/v2/gh/ProjectPythia/na-cordex-viz-cookbook/main?labpath=notebooks)
