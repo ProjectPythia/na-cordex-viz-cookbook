@@ -1,9 +1,0 @@
-format: jb-book
-root: README
-parts:
-  - caption: Preamble
-    chapters:
-      - file: notebooks/how-to-cite
-  - caption: Plot NA-CORDEX Data Diagnostics
-    chapters:
-      - file: notebooks/plot-diagnostics.ipynb
