@@ -1,6 +1,6 @@
 version: 1
 extends:
-  - https://raw.githubusercontent.com/projectpythia-mystmd/pythia-config/main/pythia.yml
+  - https://raw.githubusercontent.com/projectpythia/pythia-config/main/pythia.yml
 project:
   title: NA-CORDEX Visualization Cookbook
   authors:
@@ -9,7 +9,7 @@ project:
     - name: Anderson Banihirwe
     - name: Eric Nienhouse
     - name: Jeff de La Beaujardière
-  github: https://github.com/projectpythia-mystmd/na-cordex-viz-cookbook
+  github: https://github.com/projectpythia/na-cordex-viz-cookbook
   copyright: '2024'
   toc:
     - file: README.md
@@ -21,7 +21,7 @@ project:
         - file: notebooks/plot-diagnostics.ipynb
   jupyter:
       binder:
-        repo: projectpythia-mystmd/na-cordex-viz-cookbook
+        repo: projectpythia/na-cordex-viz-cookbook
 site:
   options:
     logo: notebooks/images/logos/pythia_logo-white-rtext.svg
