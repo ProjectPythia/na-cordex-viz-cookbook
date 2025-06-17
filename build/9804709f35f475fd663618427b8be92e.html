@@ -1,0 +1,685 @@
+<div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+  height: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+  border: 2px solid transparent !important;
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0) !important;
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
+  margin-bottom: 0;
+  padding-top: 2px;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 13GB
+Dimensions:    (lat: 129, lon: 300, member_id: 6, time: 13514, bnds: 2)
+Coordinates:
+  * lat        (lat) float64 1kB 12.25 12.75 13.25 13.75 ... 75.25 75.75 76.25
+  * lon        (lon) float64 2kB -171.8 -171.2 -170.8 ... -23.25 -22.75 -22.25
+  * member_id  (member_id) &lt;U18 432B &#x27;ERA-Int.CRCM5-UQAM&#x27; ... &#x27;ERA-Int.WRF&#x27;
+  * time       (time) datetime64[ns] 108kB 1979-01-01T12:00:00 ... 2015-12-31...
+    time_bnds  (time, bnds) datetime64[ns] 216kB dask.array&lt;chunksize=(13514, 2), meta=np.ndarray&gt;
+Dimensions without coordinates: bnds
+Data variables:
+    tmax       (member_id, time, lat, lon) float32 13GB dask.array&lt;chunksize=(4, 1000, 65, 150), meta=np.ndarray&gt;
+Attributes: (12/42)
+    CORDEX_domain:                        NAM-44
+    contact:                              {&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;Winger.Katj...
+    contact_note:                         {&quot;ERA-Int.RegCM4&quot;: &quot;Simulations by ...
+    creation_date:                        {&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;2015-06-18T...
+    driving_experiment:                   {&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;ECMWF-ERAIN...
+    driving_experiment_name:              evaluation
+    ...                                   ...
+    intake_esm_attrs:vertical_levels:     1
+    intake_esm_attrs:bias_correction:     raw
+    intake_esm_attrs:na-cordex-models:    ERA-Int.CRCM5-UQAM,ERA-Int.RegCM4,E...
+    intake_esm_attrs:path:                s3://ncar-na-cordex/day/tmax.eval.d...
+    intake_esm_attrs:_data_format_:       zarr
+    intake_esm_dataset_key:               tmax.day.eval.NAM-44i.raw</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-3ee28425-ca89-45f0-80e8-a5ff53df58dc' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3ee28425-ca89-45f0-80e8-a5ff53df58dc' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 129</li><li><span class='xr-has-index'>lon</span>: 300</li><li><span class='xr-has-index'>member_id</span>: 6</li><li><span class='xr-has-index'>time</span>: 13514</li><li><span>bnds</span>: 2</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-389e195f-4f98-4340-8666-43be4907c048' class='xr-section-summary-in' type='checkbox'  checked><label for='section-389e195f-4f98-4340-8666-43be4907c048' class='xr-section-summary' >Coordinates: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>12.25 12.75 13.25 ... 75.75 76.25</div><input id='attrs-69511c55-f450-451e-8a00-d684b9843a79' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-69511c55-f450-451e-8a00-d684b9843a79' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-76031e9b-9318-4a17-975d-4c898e089428' class='xr-var-data-in' type='checkbox'><label for='data-76031e9b-9318-4a17-975d-4c898e089428' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><pre>array([12.25, 12.75, 13.25, 13.75, 14.25, 14.75, 15.25, 15.75, 16.25, 16.75,
+       17.25, 17.75, 18.25, 18.75, 19.25, 19.75, 20.25, 20.75, 21.25, 21.75,
+       22.25, 22.75, 23.25, 23.75, 24.25, 24.75, 25.25, 25.75, 26.25, 26.75,
+       27.25, 27.75, 28.25, 28.75, 29.25, 29.75, 30.25, 30.75, 31.25, 31.75,
+       32.25, 32.75, 33.25, 33.75, 34.25, 34.75, 35.25, 35.75, 36.25, 36.75,
+       37.25, 37.75, 38.25, 38.75, 39.25, 39.75, 40.25, 40.75, 41.25, 41.75,
+       42.25, 42.75, 43.25, 43.75, 44.25, 44.75, 45.25, 45.75, 46.25, 46.75,
+       47.25, 47.75, 48.25, 48.75, 49.25, 49.75, 50.25, 50.75, 51.25, 51.75,
+       52.25, 52.75, 53.25, 53.75, 54.25, 54.75, 55.25, 55.75, 56.25, 56.75,
+       57.25, 57.75, 58.25, 58.75, 59.25, 59.75, 60.25, 60.75, 61.25, 61.75,
+       62.25, 62.75, 63.25, 63.75, 64.25, 64.75, 65.25, 65.75, 66.25, 66.75,
+       67.25, 67.75, 68.25, 68.75, 69.25, 69.75, 70.25, 70.75, 71.25, 71.75,
+       72.25, 72.75, 73.25, 73.75, 74.25, 74.75, 75.25, 75.75, 76.25])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-171.8 -171.2 ... -22.75 -22.25</div><input id='attrs-1b3b164f-eac6-45e5-b8b0-9ad19dcdeb44' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-1b3b164f-eac6-45e5-b8b0-9ad19dcdeb44' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c4edd6a1-71f0-4286-85f7-b8fb37359d73' class='xr-var-data-in' type='checkbox'><label for='data-c4edd6a1-71f0-4286-85f7-b8fb37359d73' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><pre>array([-171.75, -171.25, -170.75, ...,  -23.25,  -22.75,  -22.25], shape=(300,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>member_id</span></div><div class='xr-var-dims'>(member_id)</div><div class='xr-var-dtype'>&lt;U18</div><div class='xr-var-preview xr-preview'>&#x27;ERA-Int.CRCM5-UQAM&#x27; ... &#x27;ERA-In...</div><input id='attrs-9487f1e5-1c24-45c7-bd74-a8e021aadce2' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9487f1e5-1c24-45c7-bd74-a8e021aadce2' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-75c0209f-1092-4a1e-8637-de4d2989f2dc' class='xr-var-data-in' type='checkbox'><label for='data-75c0209f-1092-4a1e-8637-de4d2989f2dc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;ERA-Int.CRCM5-UQAM&#x27;, &#x27;ERA-Int.RegCM4&#x27;, &#x27;ERA-Int.HIRHAM5&#x27;,
+       &#x27;ERA-Int.RCA4&#x27;, &#x27;ERA-Int.CanRCM4&#x27;, &#x27;ERA-Int.WRF&#x27;], dtype=&#x27;&lt;U18&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>1979-01-01T12:00:00 ... 2015-12-...</div><input id='attrs-d2de75a3-485c-4a35-86e1-080a70f133e6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d2de75a3-485c-4a35-86e1-080a70f133e6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-92a9815d-c984-430f-8395-5a886cbcb1aa' class='xr-var-data-in' type='checkbox'><label for='data-92a9815d-c984-430f-8395-5a886cbcb1aa' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>T</dd><dt><span>bounds :</span></dt><dd>time_bnds</dd><dt><span>coordinate_defines :</span></dt><dd>point</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;1979-01-01T12:00:00.000000000&#x27;, &#x27;1979-01-02T12:00:00.000000000&#x27;,
+       &#x27;1979-01-03T12:00:00.000000000&#x27;, ..., &#x27;2015-12-29T12:00:00.000000000&#x27;,
+       &#x27;2015-12-30T12:00:00.000000000&#x27;, &#x27;2015-12-31T12:00:00.000000000&#x27;],
+      shape=(13514,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time_bnds</span></div><div class='xr-var-dims'>(time, bnds)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(13514, 2), meta=np.ndarray&gt;</div><input id='attrs-87a7ab49-c2cb-48a0-85a7-cee71b23a6fb' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-87a7ab49-c2cb-48a0-85a7-cee71b23a6fb' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c8f28ded-c204-4f09-996d-2d887c73611a' class='xr-var-data-in' type='checkbox'><label for='data-c8f28ded-c204-4f09-996d-2d887c73611a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 211.16 kiB </td>
+                        <td> 211.16 kiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (13514, 2) </td>
+                        <td> (13514, 2) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 1 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> datetime64[ns] numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="75" height="170" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="25" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="120" x2="25" y2="120" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2" />
+  <line x1="25" y1="0" x2="25" y2="120" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 25.412616514582485,0.0 25.412616514582485,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="12.706308" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" >2</text>
+  <text x="45.412617" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,45.412617,60.000000)">13514</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-1f80f21a-b935-4da4-8b32-a13d27c4d660' class='xr-section-summary-in' type='checkbox'  checked><label for='section-1f80f21a-b935-4da4-8b32-a13d27c4d660' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>tmax</span></div><div class='xr-var-dims'>(member_id, time, lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(4, 1000, 65, 150), meta=np.ndarray&gt;</div><input id='attrs-82276b6a-d19a-4322-947a-d1c1e2084d93' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-82276b6a-d19a-4322-947a-d1c1e2084d93' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b0999334-0a48-4390-a9a4-299158e6320e' class='xr-var-data-in' type='checkbox'><label for='data-b0999334-0a48-4390-a9a4-299158e6320e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cell_methods :</span></dt><dd>time: maximum</dd><dt><span>long_name :</span></dt><dd>Daily Maximum Near-Surface Air Temperature</dd><dt><span>remap :</span></dt><dd>remapped via ESMF_regrid_with_weights: Higher-order Patch</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degC</dd></dl></div><div class='xr-var-data'><table>
+    <tr>
+        <td>
+            <table style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <td> </td>
+                        <th> Array </th>
+                        <th> Chunk </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <th> Bytes </th>
+                        <td> 11.69 GiB </td>
+                        <td> 148.77 MiB </td>
+                    </tr>
+                    
+                    <tr>
+                        <th> Shape </th>
+                        <td> (6, 13514, 129, 300) </td>
+                        <td> (4, 1000, 65, 150) </td>
+                    </tr>
+                    <tr>
+                        <th> Dask graph </th>
+                        <td colspan="2"> 112 chunks in 2 graph layers </td>
+                    </tr>
+                    <tr>
+                        <th> Data type </th>
+                        <td colspan="2"> float32 numpy.ndarray </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+        <svg width="340" height="146" style="stroke:rgb(0,0,0);stroke-width:1" >
+
+  <!-- Horizontal lines -->
+  <line x1="0" y1="0" x2="25" y2="0" style="stroke-width:2" />
+  <line x1="0" y1="25" x2="25" y2="25" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="0" y1="0" x2="0" y2="25" style="stroke-width:2" />
+  <line x1="16" y1="0" x2="16" y2="25" />
+  <line x1="25" y1="0" x2="25" y2="25" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="0.0,0.0 25.412616514582485,0.0 25.412616514582485,25.412616514582485 0.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="12.706308" y="45.412617" font-size="1.0rem" font-weight="100" text-anchor="middle" >6</text>
+  <text x="45.412617" y="12.706308" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(0,45.412617,12.706308)">1</text>
+
+
+  <!-- Horizontal lines -->
+  <line x1="95" y1="0" x2="165" y2="70" style="stroke-width:2" />
+  <line x1="95" y1="12" x2="165" y2="83" />
+  <line x1="95" y1="25" x2="165" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="95" y1="0" x2="95" y2="25" style="stroke-width:2" />
+  <line x1="100" y1="5" x2="100" y2="30" />
+  <line x1="105" y1="10" x2="105" y2="35" />
+  <line x1="110" y1="15" x2="110" y2="41" />
+  <line x1="115" y1="20" x2="115" y2="46" />
+  <line x1="121" y1="26" x2="121" y2="51" />
+  <line x1="126" y1="31" x2="126" y2="56" />
+  <line x1="131" y1="36" x2="131" y2="61" />
+  <line x1="136" y1="41" x2="136" y2="67" />
+  <line x1="142" y1="47" x2="142" y2="72" />
+  <line x1="147" y1="52" x2="147" y2="77" />
+  <line x1="152" y1="57" x2="152" y2="82" />
+  <line x1="157" y1="62" x2="157" y2="88" />
+  <line x1="162" y1="67" x2="162" y2="93" />
+  <line x1="165" y1="70" x2="165" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="95.0,0.0 165.58823529411765,70.58823529411765 165.58823529411765,96.00085180870013 95.0,25.412616514582485" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="95" y1="0" x2="124" y2="0" style="stroke-width:2" />
+  <line x1="100" y1="5" x2="129" y2="5" />
+  <line x1="105" y1="10" x2="135" y2="10" />
+  <line x1="110" y1="15" x2="140" y2="15" />
+  <line x1="115" y1="20" x2="145" y2="20" />
+  <line x1="121" y1="26" x2="150" y2="26" />
+  <line x1="126" y1="31" x2="155" y2="31" />
+  <line x1="131" y1="36" x2="161" y2="36" />
+  <line x1="136" y1="41" x2="166" y2="41" />
+  <line x1="142" y1="47" x2="171" y2="47" />
+  <line x1="147" y1="52" x2="176" y2="52" />
+  <line x1="152" y1="57" x2="182" y2="57" />
+  <line x1="157" y1="62" x2="187" y2="62" />
+  <line x1="162" y1="67" x2="192" y2="67" />
+  <line x1="165" y1="70" x2="195" y2="70" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="95" y1="0" x2="165" y2="70" style="stroke-width:2" />
+  <line x1="109" y1="0" x2="180" y2="70" />
+  <line x1="124" y1="0" x2="195" y2="70" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="95.0,0.0 124.62336131801064,0.0 195.2115966121283,70.58823529411765 165.58823529411765,70.58823529411765" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Horizontal lines -->
+  <line x1="165" y1="70" x2="195" y2="70" style="stroke-width:2" />
+  <line x1="165" y1="83" x2="195" y2="83" />
+  <line x1="165" y1="96" x2="195" y2="96" style="stroke-width:2" />
+
+  <!-- Vertical lines -->
+  <line x1="165" y1="70" x2="165" y2="96" style="stroke-width:2" />
+  <line x1="180" y1="70" x2="180" y2="96" />
+  <line x1="195" y1="70" x2="195" y2="96" style="stroke-width:2" />
+
+  <!-- Colored Rectangle -->
+  <polygon points="165.58823529411765,70.58823529411765 195.2115966121283,70.58823529411765 195.2115966121283,96.00085180870013 165.58823529411765,96.00085180870013" style="fill:#ECB172A0;stroke-width:0"/>
+
+  <!-- Text -->
+  <text x="180.399916" y="116.000852" font-size="1.0rem" font-weight="100" text-anchor="middle" >300</text>
+  <text x="215.211597" y="83.294544" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,215.211597,83.294544)">129</text>
+  <text x="120.294118" y="80.706734" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(45,120.294118,80.706734)">13514</text>
+</svg>
+        </td>
+    </tr>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-3f5486c6-edb8-4762-9469-b31c814b544d' class='xr-section-summary-in' type='checkbox'  ><label for='section-3f5486c6-edb8-4762-9469-b31c814b544d' class='xr-section-summary' >Indexes: <span>(4)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-ec660113-cb1c-44bb-b4ab-beeebdb69973' class='xr-index-data-in' type='checkbox'/><label for='index-ec660113-cb1c-44bb-b4ab-beeebdb69973' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([12.25, 12.75, 13.25, 13.75, 14.25, 14.75, 15.25, 15.75, 16.25, 16.75,
+       ...
+       71.75, 72.25, 72.75, 73.25, 73.75, 74.25, 74.75, 75.25, 75.75, 76.25],
+      dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;, length=129))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-ef8d7891-f09a-4163-809c-54ac496f2325' class='xr-index-data-in' type='checkbox'/><label for='index-ef8d7891-f09a-4163-809c-54ac496f2325' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-171.75, -171.25, -170.75, -170.25, -169.75, -169.25, -168.75, -168.25,
+       -167.75, -167.25,
+       ...
+        -26.75,  -26.25,  -25.75,  -25.25,  -24.75,  -24.25,  -23.75,  -23.25,
+        -22.75,  -22.25],
+      dtype=&#x27;float64&#x27;, name=&#x27;lon&#x27;, length=300))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>member_id</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-ad94149f-8bc9-4fd4-ac8e-8c3078cb5e19' class='xr-index-data-in' type='checkbox'/><label for='index-ad94149f-8bc9-4fd4-ac8e-8c3078cb5e19' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([&#x27;ERA-Int.CRCM5-UQAM&#x27;, &#x27;ERA-Int.RegCM4&#x27;, &#x27;ERA-Int.HIRHAM5&#x27;,
+       &#x27;ERA-Int.RCA4&#x27;, &#x27;ERA-Int.CanRCM4&#x27;, &#x27;ERA-Int.WRF&#x27;],
+      dtype=&#x27;object&#x27;, name=&#x27;member_id&#x27;))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-712a84d5-c223-4349-87f5-6b2111f3bf1c' class='xr-index-data-in' type='checkbox'/><label for='index-712a84d5-c223-4349-87f5-6b2111f3bf1c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;1979-01-01 12:00:00&#x27;, &#x27;1979-01-02 12:00:00&#x27;,
+               &#x27;1979-01-03 12:00:00&#x27;, &#x27;1979-01-04 12:00:00&#x27;,
+               &#x27;1979-01-05 12:00:00&#x27;, &#x27;1979-01-06 12:00:00&#x27;,
+               &#x27;1979-01-07 12:00:00&#x27;, &#x27;1979-01-08 12:00:00&#x27;,
+               &#x27;1979-01-09 12:00:00&#x27;, &#x27;1979-01-10 12:00:00&#x27;,
+               ...
+               &#x27;2015-12-22 12:00:00&#x27;, &#x27;2015-12-23 12:00:00&#x27;,
+               &#x27;2015-12-24 12:00:00&#x27;, &#x27;2015-12-25 12:00:00&#x27;,
+               &#x27;2015-12-26 12:00:00&#x27;, &#x27;2015-12-27 12:00:00&#x27;,
+               &#x27;2015-12-28 12:00:00&#x27;, &#x27;2015-12-29 12:00:00&#x27;,
+               &#x27;2015-12-30 12:00:00&#x27;, &#x27;2015-12-31 12:00:00&#x27;],
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=13514, freq=None))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-18de5c36-ee41-47c3-b401-f81424131a5f' class='xr-section-summary-in' type='checkbox'  ><label for='section-18de5c36-ee41-47c3-b401-f81424131a5f' class='xr-section-summary' >Attributes: <span>(42)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>CORDEX_domain :</span></dt><dd>NAM-44</dd><dt><span>contact :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;Winger.Katja@uqam.ca&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;Daryl Herzmann, akrherz@iastate.edu&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;obc@dmi.dk&quot;, &quot;ERA-Int.RCA4&quot;: &quot;rossby.cordex@smhi.se&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;cccma_info@ec.gc.ca&quot;, &quot;ERA-Int.WRF&quot;: &quot;Melissa Bukovsky, bukovsky@ucar.edu&quot;}</dd><dt><span>contact_note :</span></dt><dd>{&quot;ERA-Int.RegCM4&quot;: &quot;Simulations by Ray Arritt (deceased)&quot;, &quot;ERA-Int.WRF&quot;: &quot;Simulations by Hsin-I Chang, hchang@atmo.arizona.edu&quot;}</dd><dt><span>creation_date :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;2015-06-18T10:56:49Z&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;2013-11-16T21:18:29Z&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;2012-09-28 12:11:10&quot;, &quot;ERA-Int.RCA4&quot;: &quot;2014-02-16-T00:49:00Z&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;2012-06-29 14:22:09&quot;, &quot;ERA-Int.WRF&quot;: &quot;2016-02-29T09:37:24Z&quot;}</dd><dt><span>driving_experiment :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;ECMWF-ERAINT,evaluation,r1i1p1&quot;, &quot;ERA-Int.RCA4&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.WRF&quot;: &quot;ECMWF-ERAINT,evaluation,r1i1p1&quot;}</dd><dt><span>driving_experiment_name :</span></dt><dd>evaluation</dd><dt><span>driving_model_ensemble_member :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.RCA4&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.WRF&quot;: &quot;r1i1p1&quot;}</dd><dt><span>driving_model_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.RCA4&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.WRF&quot;: &quot;ECMWF-ERAINT&quot;}</dd><dt><span>experiment_id :</span></dt><dd>evaluation</dd><dt><span>frequency :</span></dt><dd>day</dd><dt><span>id :</span></dt><dd>doi:10.5065/D6SJ1JCH</dd><dt><span>institute_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;UQAM&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ISU&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;DMI&quot;, &quot;ERA-Int.RCA4&quot;: &quot;SMHI&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;CCCma&quot;, &quot;ERA-Int.WRF&quot;: &quot;UA&quot;}</dd><dt><span>institution :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;Universite du Quebec a Montreal&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;Iowa State University&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;Danish Meteorological Institute&quot;, &quot;ERA-Int.RCA4&quot;: &quot;Swedish Meteorological and Hydrological Institute, Rossby Centre&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;CCCma (Canadian Centre for Climate Modelling and Analysis, Victoria, BC, Canada)&quot;, &quot;ERA-Int.WRF&quot;: &quot;University of Arizona&quot;}</dd><dt><span>model_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;UQAM-CRCM5&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ISU-RegCM4&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;DMI-HIRHAM5&quot;, &quot;ERA-Int.RCA4&quot;: &quot;SMHI-RCA4&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;CCCma-CanRCM4&quot;, &quot;ERA-Int.WRF&quot;: &quot;UA-WRF&quot;}</dd><dt><span>original_calendar :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;gregorian&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;standard&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;gregorian&quot;, &quot;ERA-Int.RCA4&quot;: &quot;standard&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;365_day&quot;, &quot;ERA-Int.WRF&quot;: &quot;standard&quot;}</dd><dt><span>product :</span></dt><dd>output</dd><dt><span>project_id :</span></dt><dd>CORDEX</dd><dt><span>rcm_version_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;v1&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;v4.4-rc8&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;v1&quot;, &quot;ERA-Int.RCA4&quot;: &quot;v1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;r2&quot;, &quot;ERA-Int.WRF&quot;: &quot;v3.5.1&quot;}</dd><dt><span>references :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;http://www.mrcc.uqam.ca&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;Elguindi, et al. Regional climate model RegCM user manual version 4.4. The Abdus Salam International Centre for Theoretical Physics, Strada Costiera, Trieste, Italy. (2013).&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;Christensen, et al. \&quot;The HIRHAM regional climate model. Version 5 (beta).\&quot; (2007).&quot;, &quot;ERA-Int.RCA4&quot;: &quot;http://www.smhi.se/en/Research/Research-departments/climate-research-rossby-centre&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;http://www.cccma.ec.gc.ca/models&quot;, &quot;ERA-Int.WRF&quot;: &quot;Skamarock, et al., 2005. &#x27;A description of the Advanced Research WRF version 2.&#x27; NCAR Tech. Note NCAR/TN-468+STR&quot;}</dd><dt><span>title :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;NA-CORDEX Raw NAM-44i CRCM5-UQAM ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;NA-CORDEX Raw NAM-44i RegCM4 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;NA-CORDEX Raw NAM-44i HIRHAM5 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.RCA4&quot;: &quot;NA-CORDEX Raw NAM-44i RCA4 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;NA-CORDEX Raw NAM-44i CanRCM4 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.WRF&quot;: &quot;NA-CORDEX Raw NAM-44i WRF ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;}</dd><dt><span>tracking_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;a8d17321-0e16-46eb-b8e1-a419ab582dbf&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;52329c90-c89c-4780-b154-0244cc969507&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;f02ffa94-2fe0-4d67-b98e-fa58ca57eb4d&quot;, &quot;ERA-Int.RCA4&quot;: &quot;4ea53413-f7e3-4135-97f3-4d4446b57431&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;41a6bfca-ac24-4dfd-8dce-1c5c47416ae5&quot;, &quot;ERA-Int.WRF&quot;: &quot;c6e0f951-7ead-4e41-8a7c-2ba34a2450d9&quot;}</dd><dt><span>version :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;1.2&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;2.1&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;1.2&quot;, &quot;ERA-Int.RCA4&quot;: &quot;1.1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;1.2&quot;, &quot;ERA-Int.WRF&quot;: &quot;2.3&quot;}</dd><dt><span>zarr-dataset-reference :</span></dt><dd>For dataset documentation, see DOI https://doi.org/10.5065/D6SJ1JCH</dd><dt><span>zarr-version :</span></dt><dd>1.0</dd><dt><span>intake_esm_vars :</span></dt><dd>[&#x27;tmax&#x27;]</dd><dt><span>intake_esm_attrs:variable :</span></dt><dd>tmax</dd><dt><span>intake_esm_attrs:standard_name :</span></dt><dd>air_temperature</dd><dt><span>intake_esm_attrs:long_name :</span></dt><dd>Daily Maximum Near-Surface Air Temperature</dd><dt><span>intake_esm_attrs:units :</span></dt><dd>degC</dd><dt><span>intake_esm_attrs:spatial_domain :</span></dt><dd>north_america</dd><dt><span>intake_esm_attrs:grid :</span></dt><dd>NAM-44i</dd><dt><span>intake_esm_attrs:spatial_resolution :</span></dt><dd>0.50 deg</dd><dt><span>intake_esm_attrs:scenario :</span></dt><dd>eval</dd><dt><span>intake_esm_attrs:start_time :</span></dt><dd>1979-01-01T12:00:00</dd><dt><span>intake_esm_attrs:end_time :</span></dt><dd>2015-12-31T12:00:00</dd><dt><span>intake_esm_attrs:frequency :</span></dt><dd>day</dd><dt><span>intake_esm_attrs:vertical_levels :</span></dt><dd>1</dd><dt><span>intake_esm_attrs:bias_correction :</span></dt><dd>raw</dd><dt><span>intake_esm_attrs:na-cordex-models :</span></dt><dd>ERA-Int.CRCM5-UQAM,ERA-Int.RegCM4,ERA-Int.HIRHAM5,ERA-Int.RCA4,ERA-Int.CanRCM4,ERA-Int.WRF</dd><dt><span>intake_esm_attrs:path :</span></dt><dd>s3://ncar-na-cordex/day/tmax.eval.day.NAM-44i.raw.zarr</dd><dt><span>intake_esm_attrs:_data_format_ :</span></dt><dd>zarr</dd><dt><span>intake_esm_dataset_key :</span></dt><dd>tmax.day.eval.NAM-44i.raw</dd></dl></div></li></ul></div></div>
