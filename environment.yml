@@ -25,3 +25,4 @@ dependencies:
 - jupyterlab
 - jupyter_server
 - sphinx-pythia-theme
+- mystmd
