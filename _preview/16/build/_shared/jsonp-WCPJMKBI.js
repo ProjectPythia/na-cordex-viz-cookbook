@@ -1,1 +1,1 @@
-import{a}from"/na-cordex-viz-cookbook/build/_shared/chunk-UABI4LSR.js";import"/na-cordex-viz-cookbook/build/_shared/chunk-R66E6AZX.js";import"/na-cordex-viz-cookbook/build/_shared/chunk-2NH4LW52.js";export default a();
+import{a}from"/na-cordex-viz-cookbook/_preview/16/build/_shared/chunk-UABI4LSR.js";import"/na-cordex-viz-cookbook/_preview/16/build/_shared/chunk-R66E6AZX.js";import"/na-cordex-viz-cookbook/_preview/16/build/_shared/chunk-2NH4LW52.js";export default a();
