@@ -1,0 +1,29 @@
+version: 1
+extends:
+  - https://raw.githubusercontent.com/projectpythia/pythia-config/main/pythia.yml
+project:
+  title: NA-CORDEX Visualization Cookbook
+  authors:
+    - name: Brian Bonnlander
+    - name: Seth McGinnis
+    - name: Anderson Banihirwe
+    - name: Eric Nienhouse
+    - name: Jeff de La Beaujardière
+  github: https://github.com/projectpythia/na-cordex-viz-cookbook
+  copyright: '2024'
+  toc:
+    - file: README.md
+    - title: Preamble
+      children:
+        - file: notebooks/how-to-cite.md
+    - title: Plot NA-CORDEX Data Diagnostics
+      children:
+        - file: notebooks/plot-diagnostics.ipynb
+  jupyter:
+      binder:
+        repo: projectpythia/na-cordex-viz-cookbook
+site:
+  options:
+    logo: notebooks/images/logos/pythia_logo-white-rtext.svg
+    folders: true
+  template: book-theme
