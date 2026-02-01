@@ -93,6 +93,7 @@ body.vscode-dark {
   min-width: 300px;
   max-width: 700px;
   line-height: 1.6;
+  padding-bottom: 4px;
 }
 
 .xr-text-repr-fallback {
@@ -103,8 +104,11 @@ body.vscode-dark {
 .xr-header {
   padding-top: 6px;
   padding-bottom: 6px;
-  margin-bottom: 4px;
+}
+
+.xr-header {
   border-bottom: solid 1px var(--xr-border-color);
+  margin-bottom: 4px;
 }
 
 .xr-header > div,
@@ -115,20 +119,15 @@ body.vscode-dark {
 }
 
 .xr-obj-type,
-.xr-obj-name,
-.xr-group-name {
+.xr-obj-name {
   margin-left: 2px;
   margin-right: 10px;
 }
 
-.xr-group-name::before {
-  content: "📁";
-  padding-right: 0.3em;
-}
-
-.xr-group-name,
-.xr-obj-type {
+.xr-obj-type,
+.xr-group-box-contents > label {
   color: var(--xr-font-color2);
+  display: block;
 }
 
 .xr-sections {
@@ -143,28 +142,39 @@ body.vscode-dark {
   display: contents;
 }
 
-.xr-section-item input {
-  display: inline-block;
+.xr-section-item > input,
+.xr-group-box-contents > input,
+.xr-array-wrap > input {
+  display: block;
   opacity: 0;
   height: 0;
   margin: 0;
 }
 
-.xr-section-item input + label {
+.xr-section-item > input + label,
+.xr-var-item > input + label {
   color: var(--xr-disabled-color);
-  border: 2px solid transparent !important;
 }
 
-.xr-section-item input:enabled + label {
+.xr-section-item > input:enabled + label,
+.xr-var-item > input:enabled + label,
+.xr-array-wrap > input:enabled + label,
+.xr-group-box-contents > input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
 }
 
-.xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0) !important;
+.xr-section-item > input:focus-visible + label,
+.xr-var-item > input:focus-visible + label,
+.xr-array-wrap > input:focus-visible + label,
+.xr-group-box-contents > input:focus-visible + label {
+  outline: auto;
 }
 
-.xr-section-item input:enabled + label:hover {
+.xr-section-item > input:enabled + label:hover,
+.xr-var-item > input:enabled + label:hover,
+.xr-array-wrap > input:enabled + label:hover,
+.xr-group-box-contents > input:enabled + label:hover {
   color: var(--xr-font-color0);
 }
 
@@ -172,11 +182,25 @@ body.vscode-dark {
   grid-column: 1;
   color: var(--xr-font-color2);
   font-weight: 500;
+  white-space: nowrap;
+}
+
+.xr-section-summary > em {
+  font-weight: normal;
+}
+
+.xr-span-grid {
+  grid-column-end: -1;
 }
 
 .xr-section-summary > span {
   display: inline-block;
-  padding-left: 0.5em;
+  padding-left: 0.3em;
+}
+
+.xr-group-box-contents > input:checked + label > span {
+  display: inline-block;
+  padding-left: 0.6em;
 }
 
 .xr-section-summary-in:disabled + label {
@@ -204,7 +228,8 @@ body.vscode-dark {
 }
 
 .xr-section-summary,
-.xr-section-inline-details {
+.xr-section-inline-details,
+.xr-group-box-contents > label {
   padding-top: 4px;
 }
 
@@ -213,20 +238,29 @@ body.vscode-dark {
 }
 
 .xr-section-details {
-  display: none;
   grid-column: 1 / -1;
   margin-top: 4px;
   margin-bottom: 5px;
+}
+
+.xr-section-summary-in ~ .xr-section-details {
+  display: none;
 }
 
 .xr-section-summary-in:checked ~ .xr-section-details {
   display: contents;
 }
 
+.xr-children {
+  display: inline-grid;
+  grid-template-columns: 100%;
+  grid-column: 1 / -1;
+  padding-top: 4px;
+}
+
 .xr-group-box {
   display: inline-grid;
-  grid-template-columns: 0px 20px auto;
-  width: 100%;
+  grid-template-columns: 0px 30px auto;
 }
 
 .xr-group-box-vline {
@@ -240,13 +274,43 @@ body.vscode-dark {
   grid-column-start: 2;
   grid-row-start: 1;
   height: 1em;
-  width: 20px;
+  width: 26px;
   border-bottom: 0.2em solid;
   border-color: var(--xr-border-color);
 }
 
 .xr-group-box-contents {
   grid-column-start: 3;
+  padding-bottom: 4px;
+}
+
+.xr-group-box-contents > label::before {
+  content: "📂";
+  padding-right: 0.3em;
+}
+
+.xr-group-box-contents > input:checked + label::before {
+  content: "📁";
+}
+
+.xr-group-box-contents > input:checked + label {
+  padding-bottom: 0px;
+}
+
+.xr-group-box-contents > input:checked ~ .xr-sections {
+  display: none;
+}
+
+.xr-group-box-contents > input + label > span {
+  display: none;
+}
+
+.xr-group-box-ellipsis {
+  font-size: 1.4em;
+  font-weight: 900;
+  color: var(--xr-font-color2);
+  letter-spacing: 0.15em;
+  cursor: default;
 }
 
 .xr-array-wrap {
@@ -500,11 +564,11 @@ Attributes: (12/42)
     intake_esm_attrs:na-cordex-models:    ERA-Int.CRCM5-UQAM,ERA-Int.RegCM4,E...
     intake_esm_attrs:path:                s3://ncar-na-cordex/day/tmax.eval.d...
     intake_esm_attrs:_data_format_:       zarr
-    intake_esm_dataset_key:               tmax.day.eval.NAM-44i.raw</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-532915bb-8b2c-41d0-8a99-007b454acb6c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-532915bb-8b2c-41d0-8a99-007b454acb6c' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>member_id</span>: 6</li><li><span class='xr-has-index'>time</span>: 13514</li><li><span class='xr-has-index'>lat</span>: 129</li><li><span class='xr-has-index'>lon</span>: 300</li><li><span>bnds</span>: 2</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-1a7c7439-1f4b-4ec6-81cb-a7648275bb41' class='xr-section-summary-in' type='checkbox'  checked><label for='section-1a7c7439-1f4b-4ec6-81cb-a7648275bb41' class='xr-section-summary' >Coordinates: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>member_id</span></div><div class='xr-var-dims'>(member_id)</div><div class='xr-var-dtype'>&lt;U18</div><div class='xr-var-preview xr-preview'>&#x27;ERA-Int.CRCM5-UQAM&#x27; ... &#x27;ERA-In...</div><input id='attrs-686ef06f-9e48-4ea3-be56-add56f5ad567' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-686ef06f-9e48-4ea3-be56-add56f5ad567' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1bfeb52a-d24f-48f4-8ccb-77e60adc4de6' class='xr-var-data-in' type='checkbox'><label for='data-1bfeb52a-d24f-48f4-8ccb-77e60adc4de6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;ERA-Int.CRCM5-UQAM&#x27;, &#x27;ERA-Int.RegCM4&#x27;, &#x27;ERA-Int.HIRHAM5&#x27;,
-       &#x27;ERA-Int.RCA4&#x27;, &#x27;ERA-Int.CanRCM4&#x27;, &#x27;ERA-Int.WRF&#x27;], dtype=&#x27;&lt;U18&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>1979-01-01T12:00:00 ... 2015-12-...</div><input id='attrs-216b60c0-8be3-4eaf-8eff-920d5b69f32d' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-216b60c0-8be3-4eaf-8eff-920d5b69f32d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f041e7fe-6263-45f9-bc3b-c436288916cf' class='xr-var-data-in' type='checkbox'><label for='data-f041e7fe-6263-45f9-bc3b-c436288916cf' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>T</dd><dt><span>bounds :</span></dt><dd>time_bnds</dd><dt><span>coordinate_defines :</span></dt><dd>point</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;1979-01-01T12:00:00.000000000&#x27;, &#x27;1979-01-02T12:00:00.000000000&#x27;,
+    intake_esm_dataset_key:               tmax.day.eval.NAM-44i.raw</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-7528b12e-0866-47da-bf45-6396366fee9f' class='xr-section-summary-in' type='checkbox' disabled /><label for='section-7528b12e-0866-47da-bf45-6396366fee9f' class='xr-section-summary'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>member_id</span>: 6</li><li><span class='xr-has-index'>time</span>: 13514</li><li><span class='xr-has-index'>lat</span>: 129</li><li><span class='xr-has-index'>lon</span>: 300</li><li><span>bnds</span>: 2</li></ul></div></li><li class='xr-section-item'><input id='section-85a37dea-9218-47ec-9ec0-7d8144c67480' class='xr-section-summary-in' type='checkbox' checked /><label for='section-85a37dea-9218-47ec-9ec0-7d8144c67480' class='xr-section-summary' title='Expand/collapse section'>Coordinates: <span>(5)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>member_id</span></div><div class='xr-var-dims'>(member_id)</div><div class='xr-var-dtype'>&lt;U18</div><div class='xr-var-preview xr-preview'>&#x27;ERA-Int.CRCM5-UQAM&#x27; ... &#x27;ERA-In...</div><input id='attrs-10085c8d-67ca-4beb-9bc2-46f3ae2b5c9a' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-10085c8d-67ca-4beb-9bc2-46f3ae2b5c9a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-004f72af-e242-41e7-947c-ea82436612f1' class='xr-var-data-in' type='checkbox'><label for='data-004f72af-e242-41e7-947c-ea82436612f1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;ERA-Int.CRCM5-UQAM&#x27;, &#x27;ERA-Int.RegCM4&#x27;, &#x27;ERA-Int.HIRHAM5&#x27;,
+       &#x27;ERA-Int.RCA4&#x27;, &#x27;ERA-Int.CanRCM4&#x27;, &#x27;ERA-Int.WRF&#x27;], dtype=&#x27;&lt;U18&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>1979-01-01T12:00:00 ... 2015-12-...</div><input id='attrs-06e6496f-aafd-4763-a789-b23013098e89' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-06e6496f-aafd-4763-a789-b23013098e89' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-540b8074-b9be-4da6-b2e1-cbe8a4d9c361' class='xr-var-data-in' type='checkbox'><label for='data-540b8074-b9be-4da6-b2e1-cbe8a4d9c361' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>axis :</span></dt><dd>T</dd><dt><span>bounds :</span></dt><dd>time_bnds</dd><dt><span>coordinate_defines :</span></dt><dd>point</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>long_name :</span></dt><dd>time</dd><dt><span>standard_name :</span></dt><dd>time</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;1979-01-01T12:00:00.000000000&#x27;, &#x27;1979-01-02T12:00:00.000000000&#x27;,
        &#x27;1979-01-03T12:00:00.000000000&#x27;, ..., &#x27;2015-12-29T12:00:00.000000000&#x27;,
        &#x27;2015-12-30T12:00:00.000000000&#x27;, &#x27;2015-12-31T12:00:00.000000000&#x27;],
-      shape=(13514,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>12.25 12.75 13.25 ... 75.75 76.25</div><input id='attrs-00f0e9c5-9dda-4f84-a002-b8edbca47d92' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-00f0e9c5-9dda-4f84-a002-b8edbca47d92' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1f50c0f6-2bfc-4350-8d90-8a4d7c0a7c99' class='xr-var-data-in' type='checkbox'><label for='data-1f50c0f6-2bfc-4350-8d90-8a4d7c0a7c99' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><pre>array([12.25, 12.75, 13.25, 13.75, 14.25, 14.75, 15.25, 15.75, 16.25, 16.75,
+      shape=(13514,), dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>12.25 12.75 13.25 ... 75.75 76.25</div><input id='attrs-c67f037b-36e5-42d3-b140-a262d7171c91' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c67f037b-36e5-42d3-b140-a262d7171c91' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e3d01dd7-6c20-4d7a-b8eb-a5e90e91c7d8' class='xr-var-data-in' type='checkbox'><label for='data-e3d01dd7-6c20-4d7a-b8eb-a5e90e91c7d8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd></dl></div><div class='xr-var-data'><pre>array([12.25, 12.75, 13.25, 13.75, 14.25, 14.75, 15.25, 15.75, 16.25, 16.75,
        17.25, 17.75, 18.25, 18.75, 19.25, 19.75, 20.25, 20.75, 21.25, 21.75,
        22.25, 22.75, 23.25, 23.75, 24.25, 24.75, 25.25, 25.75, 26.25, 26.75,
        27.25, 27.75, 28.25, 28.75, 29.25, 29.75, 30.25, 30.75, 31.25, 31.75,
@@ -516,7 +580,7 @@ Attributes: (12/42)
        57.25, 57.75, 58.25, 58.75, 59.25, 59.75, 60.25, 60.75, 61.25, 61.75,
        62.25, 62.75, 63.25, 63.75, 64.25, 64.75, 65.25, 65.75, 66.25, 66.75,
        67.25, 67.75, 68.25, 68.75, 69.25, 69.75, 70.25, 70.75, 71.25, 71.75,
-       72.25, 72.75, 73.25, 73.75, 74.25, 74.75, 75.25, 75.75, 76.25])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-171.8 -171.2 ... -22.75 -22.25</div><input id='attrs-91f44783-9755-4c9e-bb3e-07b90006924e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-91f44783-9755-4c9e-bb3e-07b90006924e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-682fa6ad-c07b-47e0-a872-36b569a5031a' class='xr-var-data-in' type='checkbox'><label for='data-682fa6ad-c07b-47e0-a872-36b569a5031a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><pre>array([-171.75, -171.25, -170.75, ...,  -23.25,  -22.75,  -22.25], shape=(300,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time_bnds</span></div><div class='xr-var-dims'>(time, bnds)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(13514, 2), meta=np.ndarray&gt;</div><input id='attrs-eb3a6196-17d6-418b-a2b1-0b08cc40383b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-eb3a6196-17d6-418b-a2b1-0b08cc40383b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-223c7f37-712f-4a5d-96c0-9653cfd770e5' class='xr-var-data-in' type='checkbox'><label for='data-223c7f37-712f-4a5d-96c0-9653cfd770e5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
+       72.25, 72.75, 73.25, 73.75, 74.25, 74.75, 75.25, 75.75, 76.25])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-171.8 -171.2 ... -22.75 -22.25</div><input id='attrs-dda6219f-798d-4806-b8c8-598c6868d5a1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-dda6219f-798d-4806-b8c8-598c6868d5a1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cfca6219-8801-48ee-8d51-fcda56739558' class='xr-var-data-in' type='checkbox'><label for='data-cfca6219-8801-48ee-8d51-fcda56739558' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd></dl></div><div class='xr-var-data'><pre>array([-171.75, -171.25, -170.75, ...,  -23.25,  -22.75,  -22.25], shape=(300,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>time_bnds</span></div><div class='xr-var-dims'>(time, bnds)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(13514, 2), meta=np.ndarray&gt;</div><input id='attrs-33c9fa4a-3c18-402a-8b69-b9ef52400d25' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-33c9fa4a-3c18-402a-8b69-b9ef52400d25' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-30a2ca00-6def-4dcd-a09f-1a70678d806b' class='xr-var-data-in' type='checkbox'><label for='data-30a2ca00-6def-4dcd-a09f-1a70678d806b' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -571,7 +635,7 @@ Attributes: (12/42)
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-7822a643-c7e5-4985-b9ed-988cd6c288c8' class='xr-section-summary-in' type='checkbox'  checked><label for='section-7822a643-c7e5-4985-b9ed-988cd6c288c8' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>tmax</span></div><div class='xr-var-dims'>(member_id, time, lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(3, 1000, 65, 150), meta=np.ndarray&gt;</div><input id='attrs-eb69a05b-625a-48ce-ae76-66663ab78096' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-eb69a05b-625a-48ce-ae76-66663ab78096' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9e5e9dab-247e-4d21-841e-a2219824cbcb' class='xr-var-data-in' type='checkbox'><label for='data-9e5e9dab-247e-4d21-841e-a2219824cbcb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cell_methods :</span></dt><dd>time: maximum</dd><dt><span>long_name :</span></dt><dd>Daily Maximum Near-Surface Air Temperature</dd><dt><span>remap :</span></dt><dd>remapped via ESMF_regrid_with_weights: Higher-order Patch</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degC</dd></dl></div><div class='xr-var-data'><table>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-ca728918-e2c9-4f21-9a2e-22cfba3ae841' class='xr-section-summary-in' type='checkbox' checked /><label for='section-ca728918-e2c9-4f21-9a2e-22cfba3ae841' class='xr-section-summary' title='Expand/collapse section'>Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>tmax</span></div><div class='xr-var-dims'>(member_id, time, lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>dask.array&lt;chunksize=(3, 1000, 65, 150), meta=np.ndarray&gt;</div><input id='attrs-2fb68a77-8970-452d-9c7a-f00ee55c37fa' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2fb68a77-8970-452d-9c7a-f00ee55c37fa' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d473db05-8bbf-434a-b9ec-413390f10369' class='xr-var-data-in' type='checkbox'><label for='data-d473db05-8bbf-434a-b9ec-413390f10369' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>cell_methods :</span></dt><dd>time: maximum</dd><dt><span>long_name :</span></dt><dd>Daily Maximum Near-Surface Air Temperature</dd><dt><span>remap :</span></dt><dd>remapped via ESMF_regrid_with_weights: Higher-order Patch</dd><dt><span>standard_name :</span></dt><dd>air_temperature</dd><dt><span>units :</span></dt><dd>degC</dd></dl></div><div class='xr-var-data'><table>
     <tr>
         <td>
             <table style="border-collapse: collapse;">
@@ -696,4 +760,4 @@ Attributes: (12/42)
 </svg>
         </td>
     </tr>
-</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-7dbdc7c4-1825-4491-aa74-1b50c5c727de' class='xr-section-summary-in' type='checkbox'  ><label for='section-7dbdc7c4-1825-4491-aa74-1b50c5c727de' class='xr-section-summary' >Attributes: <span>(42)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>CORDEX_domain :</span></dt><dd>NAM-44</dd><dt><span>contact :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;Winger.Katja@uqam.ca&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;Daryl Herzmann, akrherz@iastate.edu&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;obc@dmi.dk&quot;, &quot;ERA-Int.RCA4&quot;: &quot;rossby.cordex@smhi.se&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;cccma_info@ec.gc.ca&quot;, &quot;ERA-Int.WRF&quot;: &quot;Melissa Bukovsky, bukovsky@ucar.edu&quot;}</dd><dt><span>contact_note :</span></dt><dd>{&quot;ERA-Int.RegCM4&quot;: &quot;Simulations by Ray Arritt (deceased)&quot;, &quot;ERA-Int.WRF&quot;: &quot;Simulations by Hsin-I Chang, hchang@atmo.arizona.edu&quot;}</dd><dt><span>creation_date :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;2015-06-18T10:56:49Z&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;2013-11-16T21:18:29Z&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;2012-09-28 12:11:10&quot;, &quot;ERA-Int.RCA4&quot;: &quot;2014-02-16-T00:49:00Z&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;2012-06-29 14:22:09&quot;, &quot;ERA-Int.WRF&quot;: &quot;2016-02-29T09:37:24Z&quot;}</dd><dt><span>driving_experiment :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;ECMWF-ERAINT,evaluation,r1i1p1&quot;, &quot;ERA-Int.RCA4&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.WRF&quot;: &quot;ECMWF-ERAINT,evaluation,r1i1p1&quot;}</dd><dt><span>driving_experiment_name :</span></dt><dd>evaluation</dd><dt><span>driving_model_ensemble_member :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.RCA4&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.WRF&quot;: &quot;r1i1p1&quot;}</dd><dt><span>driving_model_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.RCA4&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.WRF&quot;: &quot;ECMWF-ERAINT&quot;}</dd><dt><span>experiment_id :</span></dt><dd>evaluation</dd><dt><span>frequency :</span></dt><dd>day</dd><dt><span>id :</span></dt><dd>doi:10.5065/D6SJ1JCH</dd><dt><span>institute_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;UQAM&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ISU&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;DMI&quot;, &quot;ERA-Int.RCA4&quot;: &quot;SMHI&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;CCCma&quot;, &quot;ERA-Int.WRF&quot;: &quot;UA&quot;}</dd><dt><span>institution :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;Universite du Quebec a Montreal&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;Iowa State University&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;Danish Meteorological Institute&quot;, &quot;ERA-Int.RCA4&quot;: &quot;Swedish Meteorological and Hydrological Institute, Rossby Centre&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;CCCma (Canadian Centre for Climate Modelling and Analysis, Victoria, BC, Canada)&quot;, &quot;ERA-Int.WRF&quot;: &quot;University of Arizona&quot;}</dd><dt><span>model_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;UQAM-CRCM5&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ISU-RegCM4&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;DMI-HIRHAM5&quot;, &quot;ERA-Int.RCA4&quot;: &quot;SMHI-RCA4&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;CCCma-CanRCM4&quot;, &quot;ERA-Int.WRF&quot;: &quot;UA-WRF&quot;}</dd><dt><span>original_calendar :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;gregorian&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;standard&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;gregorian&quot;, &quot;ERA-Int.RCA4&quot;: &quot;standard&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;365_day&quot;, &quot;ERA-Int.WRF&quot;: &quot;standard&quot;}</dd><dt><span>product :</span></dt><dd>output</dd><dt><span>project_id :</span></dt><dd>CORDEX</dd><dt><span>rcm_version_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;v1&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;v4.4-rc8&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;v1&quot;, &quot;ERA-Int.RCA4&quot;: &quot;v1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;r2&quot;, &quot;ERA-Int.WRF&quot;: &quot;v3.5.1&quot;}</dd><dt><span>references :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;http://www.mrcc.uqam.ca&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;Elguindi, et al. Regional climate model RegCM user manual version 4.4. The Abdus Salam International Centre for Theoretical Physics, Strada Costiera, Trieste, Italy. (2013).&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;Christensen, et al. \&quot;The HIRHAM regional climate model. Version 5 (beta).\&quot; (2007).&quot;, &quot;ERA-Int.RCA4&quot;: &quot;http://www.smhi.se/en/Research/Research-departments/climate-research-rossby-centre&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;http://www.cccma.ec.gc.ca/models&quot;, &quot;ERA-Int.WRF&quot;: &quot;Skamarock, et al., 2005. &#x27;A description of the Advanced Research WRF version 2.&#x27; NCAR Tech. Note NCAR/TN-468+STR&quot;}</dd><dt><span>title :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;NA-CORDEX Raw NAM-44i CRCM5-UQAM ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;NA-CORDEX Raw NAM-44i RegCM4 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;NA-CORDEX Raw NAM-44i HIRHAM5 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.RCA4&quot;: &quot;NA-CORDEX Raw NAM-44i RCA4 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;NA-CORDEX Raw NAM-44i CanRCM4 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.WRF&quot;: &quot;NA-CORDEX Raw NAM-44i WRF ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;}</dd><dt><span>tracking_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;a8d17321-0e16-46eb-b8e1-a419ab582dbf&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;52329c90-c89c-4780-b154-0244cc969507&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;f02ffa94-2fe0-4d67-b98e-fa58ca57eb4d&quot;, &quot;ERA-Int.RCA4&quot;: &quot;4ea53413-f7e3-4135-97f3-4d4446b57431&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;41a6bfca-ac24-4dfd-8dce-1c5c47416ae5&quot;, &quot;ERA-Int.WRF&quot;: &quot;c6e0f951-7ead-4e41-8a7c-2ba34a2450d9&quot;}</dd><dt><span>version :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;1.2&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;2.1&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;1.2&quot;, &quot;ERA-Int.RCA4&quot;: &quot;1.1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;1.2&quot;, &quot;ERA-Int.WRF&quot;: &quot;2.3&quot;}</dd><dt><span>zarr-dataset-reference :</span></dt><dd>For dataset documentation, see DOI https://doi.org/10.5065/D6SJ1JCH</dd><dt><span>zarr-version :</span></dt><dd>1.0</dd><dt><span>intake_esm_vars :</span></dt><dd>[&#x27;tmax&#x27;]</dd><dt><span>intake_esm_attrs:variable :</span></dt><dd>tmax</dd><dt><span>intake_esm_attrs:standard_name :</span></dt><dd>air_temperature</dd><dt><span>intake_esm_attrs:long_name :</span></dt><dd>Daily Maximum Near-Surface Air Temperature</dd><dt><span>intake_esm_attrs:units :</span></dt><dd>degC</dd><dt><span>intake_esm_attrs:spatial_domain :</span></dt><dd>north_america</dd><dt><span>intake_esm_attrs:grid :</span></dt><dd>NAM-44i</dd><dt><span>intake_esm_attrs:spatial_resolution :</span></dt><dd>0.50 deg</dd><dt><span>intake_esm_attrs:scenario :</span></dt><dd>eval</dd><dt><span>intake_esm_attrs:start_time :</span></dt><dd>1979-01-01T12:00:00</dd><dt><span>intake_esm_attrs:end_time :</span></dt><dd>2015-12-31T12:00:00</dd><dt><span>intake_esm_attrs:frequency :</span></dt><dd>day</dd><dt><span>intake_esm_attrs:vertical_levels :</span></dt><dd>1</dd><dt><span>intake_esm_attrs:bias_correction :</span></dt><dd>raw</dd><dt><span>intake_esm_attrs:na-cordex-models :</span></dt><dd>ERA-Int.CRCM5-UQAM,ERA-Int.RegCM4,ERA-Int.HIRHAM5,ERA-Int.RCA4,ERA-Int.CanRCM4,ERA-Int.WRF</dd><dt><span>intake_esm_attrs:path :</span></dt><dd>s3://ncar-na-cordex/day/tmax.eval.day.NAM-44i.raw.zarr</dd><dt><span>intake_esm_attrs:_data_format_ :</span></dt><dd>zarr</dd><dt><span>intake_esm_dataset_key :</span></dt><dd>tmax.day.eval.NAM-44i.raw</dd></dl></div></li></ul></div></div>
+</table></div></li></ul></div></li><li class='xr-section-item'><input id='section-737f5e91-baee-4727-a314-ea471b9c332b' class='xr-section-summary-in' type='checkbox' /><label for='section-737f5e91-baee-4727-a314-ea471b9c332b' class='xr-section-summary' title='Expand/collapse section'>Attributes: <span>(42)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>CORDEX_domain :</span></dt><dd>NAM-44</dd><dt><span>contact :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;Winger.Katja@uqam.ca&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;Daryl Herzmann, akrherz@iastate.edu&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;obc@dmi.dk&quot;, &quot;ERA-Int.RCA4&quot;: &quot;rossby.cordex@smhi.se&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;cccma_info@ec.gc.ca&quot;, &quot;ERA-Int.WRF&quot;: &quot;Melissa Bukovsky, bukovsky@ucar.edu&quot;}</dd><dt><span>contact_note :</span></dt><dd>{&quot;ERA-Int.RegCM4&quot;: &quot;Simulations by Ray Arritt (deceased)&quot;, &quot;ERA-Int.WRF&quot;: &quot;Simulations by Hsin-I Chang, hchang@atmo.arizona.edu&quot;}</dd><dt><span>creation_date :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;2015-06-18T10:56:49Z&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;2013-11-16T21:18:29Z&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;2012-09-28 12:11:10&quot;, &quot;ERA-Int.RCA4&quot;: &quot;2014-02-16-T00:49:00Z&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;2012-06-29 14:22:09&quot;, &quot;ERA-Int.WRF&quot;: &quot;2016-02-29T09:37:24Z&quot;}</dd><dt><span>driving_experiment :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;ECMWF-ERAINT,evaluation,r1i1p1&quot;, &quot;ERA-Int.RCA4&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;ECMWF-ERAINT, evaluation, r1i1p1&quot;, &quot;ERA-Int.WRF&quot;: &quot;ECMWF-ERAINT,evaluation,r1i1p1&quot;}</dd><dt><span>driving_experiment_name :</span></dt><dd>evaluation</dd><dt><span>driving_model_ensemble_member :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.RCA4&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;r1i1p1&quot;, &quot;ERA-Int.WRF&quot;: &quot;r1i1p1&quot;}</dd><dt><span>driving_model_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.RCA4&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;ECMWF-ERAINT&quot;, &quot;ERA-Int.WRF&quot;: &quot;ECMWF-ERAINT&quot;}</dd><dt><span>experiment_id :</span></dt><dd>evaluation</dd><dt><span>frequency :</span></dt><dd>day</dd><dt><span>id :</span></dt><dd>doi:10.5065/D6SJ1JCH</dd><dt><span>institute_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;UQAM&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ISU&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;DMI&quot;, &quot;ERA-Int.RCA4&quot;: &quot;SMHI&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;CCCma&quot;, &quot;ERA-Int.WRF&quot;: &quot;UA&quot;}</dd><dt><span>institution :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;Universite du Quebec a Montreal&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;Iowa State University&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;Danish Meteorological Institute&quot;, &quot;ERA-Int.RCA4&quot;: &quot;Swedish Meteorological and Hydrological Institute, Rossby Centre&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;CCCma (Canadian Centre for Climate Modelling and Analysis, Victoria, BC, Canada)&quot;, &quot;ERA-Int.WRF&quot;: &quot;University of Arizona&quot;}</dd><dt><span>model_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;UQAM-CRCM5&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;ISU-RegCM4&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;DMI-HIRHAM5&quot;, &quot;ERA-Int.RCA4&quot;: &quot;SMHI-RCA4&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;CCCma-CanRCM4&quot;, &quot;ERA-Int.WRF&quot;: &quot;UA-WRF&quot;}</dd><dt><span>original_calendar :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;gregorian&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;standard&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;gregorian&quot;, &quot;ERA-Int.RCA4&quot;: &quot;standard&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;365_day&quot;, &quot;ERA-Int.WRF&quot;: &quot;standard&quot;}</dd><dt><span>product :</span></dt><dd>output</dd><dt><span>project_id :</span></dt><dd>CORDEX</dd><dt><span>rcm_version_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;v1&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;v4.4-rc8&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;v1&quot;, &quot;ERA-Int.RCA4&quot;: &quot;v1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;r2&quot;, &quot;ERA-Int.WRF&quot;: &quot;v3.5.1&quot;}</dd><dt><span>references :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;http://www.mrcc.uqam.ca&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;Elguindi, et al. Regional climate model RegCM user manual version 4.4. The Abdus Salam International Centre for Theoretical Physics, Strada Costiera, Trieste, Italy. (2013).&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;Christensen, et al. \&quot;The HIRHAM regional climate model. Version 5 (beta).\&quot; (2007).&quot;, &quot;ERA-Int.RCA4&quot;: &quot;http://www.smhi.se/en/Research/Research-departments/climate-research-rossby-centre&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;http://www.cccma.ec.gc.ca/models&quot;, &quot;ERA-Int.WRF&quot;: &quot;Skamarock, et al., 2005. &#x27;A description of the Advanced Research WRF version 2.&#x27; NCAR Tech. Note NCAR/TN-468+STR&quot;}</dd><dt><span>title :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;NA-CORDEX Raw NAM-44i CRCM5-UQAM ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;NA-CORDEX Raw NAM-44i RegCM4 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;NA-CORDEX Raw NAM-44i HIRHAM5 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.RCA4&quot;: &quot;NA-CORDEX Raw NAM-44i RCA4 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;NA-CORDEX Raw NAM-44i CanRCM4 ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;, &quot;ERA-Int.WRF&quot;: &quot;NA-CORDEX Raw NAM-44i WRF ERA-Int Eval Daily Mean Daily Max 2m Temperature&quot;}</dd><dt><span>tracking_id :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;a8d17321-0e16-46eb-b8e1-a419ab582dbf&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;52329c90-c89c-4780-b154-0244cc969507&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;f02ffa94-2fe0-4d67-b98e-fa58ca57eb4d&quot;, &quot;ERA-Int.RCA4&quot;: &quot;4ea53413-f7e3-4135-97f3-4d4446b57431&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;41a6bfca-ac24-4dfd-8dce-1c5c47416ae5&quot;, &quot;ERA-Int.WRF&quot;: &quot;c6e0f951-7ead-4e41-8a7c-2ba34a2450d9&quot;}</dd><dt><span>version :</span></dt><dd>{&quot;ERA-Int.CRCM5-UQAM&quot;: &quot;1.2&quot;, &quot;ERA-Int.RegCM4&quot;: &quot;2.1&quot;, &quot;ERA-Int.HIRHAM5&quot;: &quot;1.2&quot;, &quot;ERA-Int.RCA4&quot;: &quot;1.1&quot;, &quot;ERA-Int.CanRCM4&quot;: &quot;1.2&quot;, &quot;ERA-Int.WRF&quot;: &quot;2.3&quot;}</dd><dt><span>zarr-dataset-reference :</span></dt><dd>For dataset documentation, see DOI https://doi.org/10.5065/D6SJ1JCH</dd><dt><span>zarr-version :</span></dt><dd>1.0</dd><dt><span>intake_esm_vars :</span></dt><dd>[&#x27;tmax&#x27;]</dd><dt><span>intake_esm_attrs:variable :</span></dt><dd>tmax</dd><dt><span>intake_esm_attrs:standard_name :</span></dt><dd>air_temperature</dd><dt><span>intake_esm_attrs:long_name :</span></dt><dd>Daily Maximum Near-Surface Air Temperature</dd><dt><span>intake_esm_attrs:units :</span></dt><dd>degC</dd><dt><span>intake_esm_attrs:spatial_domain :</span></dt><dd>north_america</dd><dt><span>intake_esm_attrs:grid :</span></dt><dd>NAM-44i</dd><dt><span>intake_esm_attrs:spatial_resolution :</span></dt><dd>0.50 deg</dd><dt><span>intake_esm_attrs:scenario :</span></dt><dd>eval</dd><dt><span>intake_esm_attrs:start_time :</span></dt><dd>1979-01-01T12:00:00</dd><dt><span>intake_esm_attrs:end_time :</span></dt><dd>2015-12-31T12:00:00</dd><dt><span>intake_esm_attrs:frequency :</span></dt><dd>day</dd><dt><span>intake_esm_attrs:vertical_levels :</span></dt><dd>1</dd><dt><span>intake_esm_attrs:bias_correction :</span></dt><dd>raw</dd><dt><span>intake_esm_attrs:na-cordex-models :</span></dt><dd>ERA-Int.CRCM5-UQAM,ERA-Int.RegCM4,ERA-Int.HIRHAM5,ERA-Int.RCA4,ERA-Int.CanRCM4,ERA-Int.WRF</dd><dt><span>intake_esm_attrs:path :</span></dt><dd>s3://ncar-na-cordex/day/tmax.eval.day.NAM-44i.raw.zarr</dd><dt><span>intake_esm_attrs:_data_format_ :</span></dt><dd>zarr</dd><dt><span>intake_esm_dataset_key :</span></dt><dd>tmax.day.eval.NAM-44i.raw</dd></dl></div></li></ul></div></div>
