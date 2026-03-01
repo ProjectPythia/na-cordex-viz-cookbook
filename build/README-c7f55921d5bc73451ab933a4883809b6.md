@@ -21,7 +21,7 @@ The main python packages used are `xarray`, `intake-esm`, `dask`, and `matplotli
 
 ## Authors
 
-[Brian Bonnlander](@bonnland), [Seth McGinnis](@sethmcg)
+[Brian Bonnlander](https://github.com/bonnland), [Seth McGinnis](https://github.com/sethmcg)
 
 ### Contributors
 
