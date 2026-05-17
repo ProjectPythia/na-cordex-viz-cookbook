@@ -21,30 +21,29 @@ The above exception was the direct cause of the following exception:
 [36mFile [39m[32m<timed exec>:2[39m
 [32m      1[39m [33m'Could not get source, probably due dynamically evaluated source code.'[39m
 
-[36mCell[39m[36m [39m[32mIn[20][39m[32m, line 15[39m, in [36mplot_first_mid_last[39m[34m(ds, data_var, store_name)[39m
-[32m     11[39m     [38;5;28;01mfor[39;00m index [38;5;28;01min[39;00m np.arange(num_members_to_plot):
-[32m     12[39m         mem_id = member_names[index]
-[32m     13[39m         data_slice = ds[data_var].sel(member_id=mem_id)
-[32m     14[39m 
-[32m---> [39m[32m15[39m         start_index, end_index = getValidDateIndexes(data_slice)
-[32m     16[39m         midDateIndex = np.floor(len(ds.time) / [32m2[39m).astype(int)
+[36mCell[39m[36m [39m[32mIn[20][39m[32m, line 21[39m, in [36mplot_first_mid_last[39m[34m(ds, data_var, store_name)[39m
 [32m     17[39m 
 [32m     18[39m         startDate = ds.time[start_index]
+[32m     19[39m         first_step = data_slice.sel(time=startDate)
+[32m     20[39m         ax = axs[index, [32m0[39m]
+[32m---> [39m[32m21[39m         plotMap(ax, first_step, startDate, mem_id)
+[32m     22[39m 
+[32m     23[39m         midDate = ds.time[midDateIndex]
+[32m     24[39m         mid_step = data_slice.sel(time=midDate)
 
-[36mCell[39m[36m [39m[32mIn[18][39m[32m, line 5[39m, in [36mgetValidDateIndexes[39m[34m(member_slice)[39m
-[32m      1[39m [38;5;28;01mdef[39;00m getValidDateIndexes(member_slice):
-[32m      2[39m     [33m"""Search for the first and last dates with finite values."""[39m
-[32m      3[39m     min_values = member_slice.min(dim = [[33m'lat'[39m, [33m'lon'[39m])
-[32m      4[39m     is_finite = np.isfinite(min_values)
-[32m----> [39m[32m5[39m     finite_indexes = np.where(is_finite)
-[32m      6[39m 
-[32m      7[39m     start_index = finite_indexes[[32m0[39m][[32m0[39m]
-[32m      8[39m     end_index = finite_indexes[[32m0[39m][-[32m1[39m]
+[36mCell[39m[36m [39m[32mIn[17][39m[32m, line 10[39m, in [36mplotMap[39m[34m(ax, map_slice, date_object, member_id)[39m
+[32m      6[39m     minval = map_slice.min(dim = [[33m'lat'[39m, [33m'lon'[39m])
+[32m      7[39m     maxval = map_slice.max(dim = [[33m'lat'[39m, [33m'lon'[39m])
+[32m      8[39m 
+[32m      9[39m     [38;5;66;03m# Format values to have at least 4 digits of precision.[39;00m
+[32m---> [39m[32m10[39m     ax.text([32m0.01[39m, [32m0.03[39m, [33m"Min: %3g"[39m % minval, transform=ax.transAxes, fontsize=[32m12[39m)
+[32m     11[39m     ax.text([32m0.99[39m, [32m0.03[39m, [33m"Max: %3g"[39m % maxval, transform=ax.transAxes, fontsize=[32m12[39m, horizontalalignment=[33m'right'[39m)
+[32m     12[39m     ax.set_xticks([])
+[32m     13[39m     ax.set_yticks([])
 
-[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/xarray/core/common.py:181[39m, in [36mAbstractArray.__array__[39m[34m(self, dtype, copy)[39m
-[32m    179[39m         [38;5;28;01mexcept[39;00m [38;5;167;01mTypeError[39;00m:
-[32m    180[39m             copy = [38;5;28;01mFalse[39;00m
-[32m--> [39m[32m181[39m [38;5;28;01mreturn[39;00m np.array([30;43mself[39;49m[30;43m.[39;49m[30;43mvalues[39;49m, dtype=dtype, copy=copy)
+[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/xarray/core/common.py:158[39m, in [36mAbstractArray.__float__[39m[34m(self)[39m
+[32m    157[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__float__[39m([38;5;28mself[39m: Any) -> [38;5;28mfloat[39m:
+[32m--> [39m[32m158[39m     [38;5;28;01mreturn[39;00m [38;5;28mfloat[39m([30;43mself[39;49m[30;43m.[39;49m[30;43mvalues[39;49m)
 
 [36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/xarray/core/dataarray.py:803[39m, in [36mDataArray.values[39m[34m(self)[39m
 [32m    790[39m [38;5;129m@property[39m
