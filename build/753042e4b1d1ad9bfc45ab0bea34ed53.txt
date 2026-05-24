@@ -15,35 +15,44 @@
 The above exception was the direct cause of the following exception:
 
 [31mClientPayloadError[39m                        Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[23][39m[32m, line 1[39m
-[32m----> [39m[32m1[39m get_ipython().run_cell_magic([33m'time'[39m, [33m''[39m, [33m'\n# Plot using the Zarr Store obtained from an earlier step in the notebook.\nfigure = plot_first_mid_last(ds, data_var, store_name)\n\nplt.show()\n'[39m)
+[36mCell[39m[36m [39m[32mIn[25][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m get_ipython().run_cell_magic([33m'time'[39m, [33m''[39m, [33m'\n# Plot using the Zarr Store obtained from an earlier step in the notebook.\nfigure = plot_stat_maps(ds, data_var, store_name, TRUNCATE_DATA)\n\nplt.show()\n'[39m)
 
 [36mFile [39m[32m<timed exec>:2[39m
 [32m      1[39m [33m'Could not get source, probably due dynamically evaluated source code.'[39m
 
-[36mCell[39m[36m [39m[32mIn[20][39m[32m, line 21[39m, in [36mplot_first_mid_last[39m[34m(ds, data_var, store_name)[39m
-[32m     17[39m 
-[32m     18[39m         startDate = ds.time[start_index]
-[32m     19[39m         first_step = data_slice.sel(time=startDate)
-[32m     20[39m         ax = axs[index, [32m0[39m]
-[32m---> [39m[32m21[39m         plotMap(ax, first_step, startDate, mem_id)
-[32m     22[39m 
-[32m     23[39m         midDate = ds.time[midDateIndex]
-[32m     24[39m         mid_step = data_slice.sel(time=midDate)
+[36mCell[39m[36m [39m[32mIn[21][39m[32m, line 19[39m, in [36mplot_stat_maps[39m[34m(ds, data_var, store_name, truncate_data)[39m
+[32m     15[39m         data_slice = ds[data_var].sel(member_id=mem_id)
+[32m     16[39m 
+[32m     17[39m         [38;5;28;01mif[39;00m truncate_data:
+[32m     18[39m             [38;5;66;03m# Limit time range to one year.[39;00m
+[32m---> [39m[32m19[39m             data_slice = truncateData(data_slice, [32m1[39m)
+[32m     20[39m 
+[32m     21[39m         [38;5;66;03m# Save slice in memory to prevent repeated disk loads[39;00m
+[32m     22[39m         data_slice = data_slice.persist()
 
-[36mCell[39m[36m [39m[32mIn[17][39m[32m, line 10[39m, in [36mplotMap[39m[34m(ax, map_slice, date_object, member_id)[39m
-[32m      6[39m     minval = map_slice.min(dim = [[33m'lat'[39m, [33m'lon'[39m])
-[32m      7[39m     maxval = map_slice.max(dim = [[33m'lat'[39m, [33m'lon'[39m])
-[32m      8[39m 
-[32m      9[39m     [38;5;66;03m# Format values to have at least 4 digits of precision.[39;00m
-[32m---> [39m[32m10[39m     ax.text([32m0.01[39m, [32m0.03[39m, [33m"Min: %3g"[39m % minval, transform=ax.transAxes, fontsize=[32m12[39m)
-[32m     11[39m     ax.text([32m0.99[39m, [32m0.03[39m, [33m"Max: %3g"[39m % maxval, transform=ax.transAxes, fontsize=[32m12[39m, horizontalalignment=[33m'right'[39m)
-[32m     12[39m     ax.set_xticks([])
-[32m     13[39m     ax.set_yticks([])
+[36mCell[39m[36m [39m[32mIn[19][39m[32m, line 3[39m, in [36mtruncateData[39m[34m(data_slice, num_years)[39m
+[32m      1[39m [38;5;28;01mdef[39;00m truncateData(data_slice, num_years):
+[32m      2[39m     [33m"""Remove all but the first num_years of valid data from the data slice."""[39m
+[32m----> [39m[32m3[39m     start_index, _ = getValidDateIndexes(data_slice)
+[32m      4[39m     start_date = data_slice.time[start_index]
+[32m      5[39m     start_year = start_date.dt.year.values
+[32m      6[39m     year_range = start_year + np.arange(num_years)
 
-[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/xarray/core/common.py:158[39m, in [36mAbstractArray.__float__[39m[34m(self)[39m
-[32m    157[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__float__[39m([38;5;28mself[39m: Any) -> [38;5;28mfloat[39m:
-[32m--> [39m[32m158[39m     [38;5;28;01mreturn[39;00m [38;5;28mfloat[39m([30;43mself[39;49m[30;43m.[39;49m[30;43mvalues[39;49m)
+[36mCell[39m[36m [39m[32mIn[18][39m[32m, line 5[39m, in [36mgetValidDateIndexes[39m[34m(member_slice)[39m
+[32m      1[39m [38;5;28;01mdef[39;00m getValidDateIndexes(member_slice):
+[32m      2[39m     [33m"""Search for the first and last dates with finite values."""[39m
+[32m      3[39m     min_values = member_slice.min(dim = [[33m'lat'[39m, [33m'lon'[39m])
+[32m      4[39m     is_finite = np.isfinite(min_values)
+[32m----> [39m[32m5[39m     finite_indexes = np.where(is_finite)
+[32m      6[39m 
+[32m      7[39m     start_index = finite_indexes[[32m0[39m][[32m0[39m]
+[32m      8[39m     end_index = finite_indexes[[32m0[39m][-[32m1[39m]
+
+[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/xarray/core/common.py:181[39m, in [36mAbstractArray.__array__[39m[34m(self, dtype, copy)[39m
+[32m    179[39m         [38;5;28;01mexcept[39;00m [38;5;167;01mTypeError[39;00m:
+[32m    180[39m             copy = [38;5;28;01mFalse[39;00m
+[32m--> [39m[32m181[39m [38;5;28;01mreturn[39;00m np.array([30;43mself[39;49m[30;43m.[39;49m[30;43mvalues[39;49m, dtype=dtype, copy=copy)
 
 [36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/xarray/core/dataarray.py:803[39m, in [36mDataArray.values[39m[34m(self)[39m
 [32m    790[39m [38;5;129m@property[39m
