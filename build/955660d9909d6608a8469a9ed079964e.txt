@@ -1,35 +1,43 @@
 [31m---------------------------------------------------------------------------[39m
 [31mContentLengthError[39m                        Traceback (most recent call last)
-[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/aiohttp/client_proto.py:144[39m, in [36mconnection_lost[39m[34m()[39m
-[32m    143[39m [38;5;28;01mtry[39;00m:
-[32m--> [39m[32m144[39m     uncompleted = [38;5;28mself[39m._parser.feed_eof()
-[32m    145[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m underlying_exc:
+[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/aiohttp/client_proto.py:143[39m, in [36mconnection_lost[39m[34m()[39m
+[32m    142[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m143[39m     uncompleted = [38;5;28mself[39m._parser.feed_eof()
+[32m    144[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m underlying_exc:
 
-[36mFile [39m[32maiohttp/_http_parser.pyx:546[39m
-[32m--> [39m[32m546[39m     [38;5;28;01mdef[39;00m feed_eof(self):
-[32m    547[39m         cdef bytes desc
+[36mFile [39m[32maiohttp/_http_parser.pyx:578[39m
+[32m--> [39m[32m578[39m     [38;5;28;01mdef[39;00m feed_eof(self):
+[32m    579[39m         cdef bytes desc
 
 [31mContentLengthError[39m: 400, message:
-  Not enough data to satisfy content length header.
+  Not enough data to satisfy content length header (received 312841 of 16148426 bytes).
 
 The above exception was the direct cause of the following exception:
 
 [31mClientPayloadError[39m                        Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[23][39m[32m, line 1[39m
-[32m----> [39m[32m1[39m get_ipython().run_cell_magic([33m'time'[39m, [33m''[39m, [33m'\n# Plot using the Zarr Store obtained from an earlier step in the notebook.\nfigure = plot_first_mid_last(ds, data_var, store_name)\n\nplt.show()\n'[39m)
+[36mCell[39m[36m [39m[32mIn[25][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m get_ipython().run_cell_magic([33m'time'[39m, [33m''[39m, [33m'\n# Plot using the Zarr Store obtained from an earlier step in the notebook.\nfigure = plot_stat_maps(ds, data_var, store_name, TRUNCATE_DATA)\n\nplt.show()\n'[39m)
 
 [36mFile [39m[32m<timed exec>:2[39m
 [32m      1[39m [33m'Could not get source, probably due dynamically evaluated source code.'[39m
 
-[36mCell[39m[36m [39m[32mIn[20][39m[32m, line 15[39m, in [36mplot_first_mid_last[39m[34m(ds, data_var, store_name)[39m
-[32m     11[39m     [38;5;28;01mfor[39;00m index [38;5;28;01min[39;00m np.arange(num_members_to_plot):
-[32m     12[39m         mem_id = member_names[index]
-[32m     13[39m         data_slice = ds[data_var].sel(member_id=mem_id)
-[32m     14[39m 
-[32m---> [39m[32m15[39m         start_index, end_index = getValidDateIndexes(data_slice)
-[32m     16[39m         midDateIndex = np.floor(len(ds.time) / [32m2[39m).astype(int)
-[32m     17[39m 
-[32m     18[39m         startDate = ds.time[start_index]
+[36mCell[39m[36m [39m[32mIn[21][39m[32m, line 19[39m, in [36mplot_stat_maps[39m[34m(ds, data_var, store_name, truncate_data)[39m
+[32m     15[39m         data_slice = ds[data_var].sel(member_id=mem_id)
+[32m     16[39m 
+[32m     17[39m         [38;5;28;01mif[39;00m truncate_data:
+[32m     18[39m             [38;5;66;03m# Limit time range to one year.[39;00m
+[32m---> [39m[32m19[39m             data_slice = truncateData(data_slice, [32m1[39m)
+[32m     20[39m 
+[32m     21[39m         [38;5;66;03m# Save slice in memory to prevent repeated disk loads[39;00m
+[32m     22[39m         data_slice = data_slice.persist()
+
+[36mCell[39m[36m [39m[32mIn[19][39m[32m, line 3[39m, in [36mtruncateData[39m[34m(data_slice, num_years)[39m
+[32m      1[39m [38;5;28;01mdef[39;00m truncateData(data_slice, num_years):
+[32m      2[39m     [33m"""Remove all but the first num_years of valid data from the data slice."""[39m
+[32m----> [39m[32m3[39m     start_index, _ = getValidDateIndexes(data_slice)
+[32m      4[39m     start_date = data_slice.time[start_index]
+[32m      5[39m     start_year = start_date.dt.year.values
+[32m      6[39m     year_range = start_year + np.arange(num_years)
 
 [36mCell[39m[36m [39m[32mIn[18][39m[32m, line 5[39m, in [36mgetValidDateIndexes[39m[34m(member_slice)[39m
 [32m      1[39m [38;5;28;01mdef[39;00m getValidDateIndexes(member_slice):
@@ -69,7 +77,7 @@ The above exception was the direct cause of the following exception:
 [32m    324[39m 
 [32m   (...)[39m[32m    333[39m [33;03m    TODO: remove this (replace with np.asarray) once these issues are fixed[39;00m
 [32m    334[39m [33;03m    """[39;00m
-[32m--> [39m[32m335[39m     data = [30;43mnp[39;49m[30;43m.[39;49m[30;43masarray[39;49m[30;43m([39;49m[30;43mdata[39;49m[30;43m)[39;49m
+[32m--> [39m[32m335[39m     data = np.asarray(data)
 [32m    336[39m     [38;5;28;01mif[39;00m data.ndim == [32m0[39m:
 [32m    337[39m         kind = data.dtype.kind
 
@@ -342,26 +350,26 @@ The above exception was the direct cause of the following exception:
 [32m     64[39m         endpoint_url=[38;5;28mself[39m.__wrapped__.url, error=e
 [32m     65[39m     )
 
-[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/aiohttp/streams.py:446[39m, in [36mread[39m[34m()[39m
-[32m    444[39m blocks = []
-[32m    445[39m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
-[32m--> [39m[32m446[39m     block = [38;5;28;01mawait[39;00m [38;5;28mself[39m.readany()
-[32m    447[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m block:
-[32m    448[39m         [38;5;28;01mbreak[39;00m
+[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/aiohttp/streams.py:437[39m, in [36mread[39m[34m()[39m
+[32m    435[39m blocks = []
+[32m    436[39m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
+[32m--> [39m[32m437[39m     block = [38;5;28;01mawait[39;00m [38;5;28mself[39m.readany()
+[32m    438[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m block:
+[32m    439[39m         [38;5;28;01mbreak[39;00m
 
-[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/aiohttp/streams.py:468[39m, in [36mreadany[39m[34m()[39m
-[32m    464[39m [38;5;66;03m# TODO: should be `if` instead of `while`[39;00m
-[32m    465[39m [38;5;66;03m# because waiter maybe triggered on chunk end,[39;00m
-[32m    466[39m [38;5;66;03m# without feeding any data[39;00m
-[32m    467[39m [38;5;28;01mwhile[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._buffer [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._eof:
-[32m--> [39m[32m468[39m     [38;5;28;01mawait[39;00m [38;5;28mself[39m._wait([33m"[39m[33mreadany[39m[33m"[39m)
-[32m    470[39m [38;5;28;01mreturn[39;00m [38;5;28mself[39m._read_nowait(-[32m1[39m)
+[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/aiohttp/streams.py:460[39m, in [36mreadany[39m[34m()[39m
+[32m    456[39m [38;5;66;03m# TODO: should be `if` instead of `while`[39;00m
+[32m    457[39m [38;5;66;03m# because waiter maybe triggered on chunk end,[39;00m
+[32m    458[39m [38;5;66;03m# without feeding any data[39;00m
+[32m    459[39m [38;5;28;01mwhile[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._buffer [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._eof:
+[32m--> [39m[32m460[39m     [38;5;28;01mawait[39;00m [38;5;28mself[39m._wait([33m"[39m[33mreadany[39m[33m"[39m)
+[32m    462[39m [38;5;28;01mreturn[39;00m [38;5;28mself[39m._read_nowait(-[32m1[39m)
 
-[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/aiohttp/streams.py:372[39m, in [36m_wait[39m[34m()[39m
-[32m    370[39m [38;5;28;01mtry[39;00m:
-[32m    371[39m     [38;5;28;01mwith[39;00m [38;5;28mself[39m._timer:
-[32m--> [39m[32m372[39m         [38;5;28;01mawait[39;00m waiter
-[32m    373[39m [38;5;28;01mfinally[39;00m:
-[32m    374[39m     [38;5;28mself[39m._waiter = [38;5;28;01mNone[39;00m
+[36mFile [39m[32m~/micromamba/envs/na-cordex-viz-cookbook-dev/lib/python3.11/site-packages/aiohttp/streams.py:365[39m, in [36m_wait[39m[34m()[39m
+[32m    363[39m [38;5;28;01mtry[39;00m:
+[32m    364[39m     [38;5;28;01mwith[39;00m [38;5;28mself[39m._timer:
+[32m--> [39m[32m365[39m         [38;5;28;01mawait[39;00m waiter
+[32m    366[39m [38;5;28;01mfinally[39;00m:
+[32m    367[39m     [38;5;28mself[39m._waiter = [38;5;28;01mNone[39;00m
 
-[31mClientPayloadError[39m: Response payload is not completed: <ContentLengthError: 400, message='Not enough data to satisfy content length header.'>. ConnectionResetError(104, 'Connection reset by peer')
+[31mClientPayloadError[39m: Response payload is not completed: <ContentLengthError: 400, message='Not enough data to satisfy content length header (received 312841 of 16148426 bytes).'>. ConnectionResetError(104, 'Connection reset by peer')
